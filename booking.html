@@ -1,0 +1,292 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple home Book an Appointment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body class="bg-gray-100 font-roboto">
+    <div class="container mx-auto p-6">
+        <div class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg mb-6">
+            <h2 class="text-2xl font-bold mb-6 text-center">SIMPLE HOME SERVICES</h2> 
+	    <h3 class="text-2xl font-bold mb-4 text-center">Book an Appointment</h3>
+            <form id="appointmentForm">
+                <div class="mb-4">
+                    <label for="service" class="block text-gray-700 font-medium mb-2">Choose Service <span class="text-red-500">*</span></label>
+                    <select id="service" name="service" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        <option value="services">Select Service</option>
+			<option value="dth_installation">DTH Installation and Service</option>
+                        <option value="home_appliances">Home Appliances (AC, TV, Fridge, Washing machine, water heater, Ironbox etc.)</option>
+                        <option value="cleaning">Cleaning (Water Tank, etc.)</option>
+			<option value="computer">Computer and laptop repair </option>
+			<option value="cc_camera">Security camera (cc Camera Repair and installaton)</option>
+			<option value="Mobile">Mobile Phone service </option>
+                        <option value="plumbing">Plumbing (Leaking Tap, Pipes Repair)</option>
+                        <option value="electrician">Electrician (Fan, Lights, Switch Boards, Wires etc.)</option>
+			<option value="Yoga">yoga and Meditation classes</option>
+                        <option value="others">Others</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-700 font-medium mb-2">Full Name <span class="text-red-500">*</span></label>
+                    <input type="text" id="name" name="name" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                <div class="mb-4">
+                    <label for="phone" class="block text-gray-700 font-medium mb-2">Phone Number <span class="text-red-500">*</span></label>
+                    <div class="flex">
+                        <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">+91</span>
+                        <input type="tel" id="phone" name="phone" class="w-full px-3 py-2 border border-gray-300 rounded-r-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required pattern="[0-9]{10}" placeholder="XXXXXXXXXX">
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label for="alt_phone" class="block text-gray-700 font-medium mb-2">Alternate Phone Number</label>
+                    <div class="flex">
+                        <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">+91</span>
+                        <input type="tel" id="alt_phone" name="alt_phone" class="w-full px-3 py-2 border border-gray-300 rounded-r-lg focus:outline-none focus:ring-2 focus:ring-blue-500" pattern="[0-9]{10}" placeholder="XXXXXXXXXX">
+                    </div>
+                </div>
+                <div class="flex mb-4 space-x-4">
+                    <div class="w-1/2">
+                        <label for="date" class="block text-gray-700 font-medium mb-2">Preferred Date <span class="text-red-500">*</span></label>
+                        <input type="date" id="date" name="date" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    <div class="w-1/2">
+                        <label for="time" class="block text-gray-700 font-medium mb-2">Preferred Time <span class="text-red-500">*</span></label>
+                        <select id="time" name="time" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <option value="morning">Morning (8:00 AM - 12:00 PM)</option>
+                            <option value="afternoon">Afternoon (12:00 PM - 4:00 PM)</option>
+                            <option value="evening">Evening (4:00 PM - 8:00 PM)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="flex mb-4 space-x-4">
+                    <div class="w-1/3">
+                        <label for="pincode" class="block text-gray-700 font-medium mb-2">Pincode <span class="text-red-500">*</span></label>
+                        <input type="text" id="pincode" name="pincode" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    <div class="w-1/3">
+                        <label for="state" class="block text-gray-700 font-medium mb-2">State <span class="text-red-500">*</span></label>
+                        <input type="text" id="state" name="state" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required readonly>
+                    </div>
+                    <div class="w-1/3">
+                        <label for="district" class="block text-gray-700 font-medium mb-2">District <span class="text-red-500">*</span></label>
+                        <input type="text" id="district" name="district" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required readonly>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label for="address" class="block text-gray-700 font-medium mb-2">Address <span class="text-red-500">*</span></label>
+                    <textarea id="address" name="address" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+                </div>
+                <div class="mb-4">
+                    <label for="map" class="block text-gray-700 font-medium mb-2">Select Location on Map <span class="text-red-500">*</span></label>
+                    <div id="map" class="w-full h-64 rounded-lg border border-gray-300"></div>
+                </div>
+                <div class="flex space-x-4">
+                    <div class="w-1/2 text-center mb-4">
+                        <button type="button" id="whatsappButton" class="w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">
+                            <i class="fab fa-whatsapp"></i> Book via WhatsApp
+                        </button>
+                    </div>
+                    <div class="w-1/2 text-center">
+                        <button type="button" id="smsButton" class="w-full bg-gray-500 text-white py-2 px-4 rounded-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500">
+                            <i class="fas fa-sms"></i> Book via SMS
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold mb-6 text-center cursor-pointer" id="showBookingsButton">Previous Bookings</h2>
+            <div id="previousBookings" class="space-y-4 hidden">
+                <!-- Previous bookings will be appended here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var map = L.map('map').setView([14.4673, 78.8242], 13); // Kadapa, Andhra Pradesh coordinates
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            var marker = L.marker([14.4673, 78.8242], {
+                draggable: true
+            }).addTo(map);
+
+            marker.on('dragend', function (e) {
+                var position = marker.getLatLng();
+                document.getElementById('location').value = position.lat + ', ' + position.lng;
+            });
+
+            map.on('click', function (e) {
+                marker.setLatLng(e.latlng);
+                document.getElementById('location').value = e.latlng.lat + ', ' + e.latlng.lng;
+            });
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var lat = position.coords.latitude;
+                    var lng = position.coords.longitude;
+                    map.setView([lat, lng], 13);
+                    marker.setLatLng([lat, lng]);
+                    document.getElementById('location').value = lat + ', ' + lng;
+                });
+            }
+
+            document.getElementById('pincode').addEventListener('input', function () {
+                var pincode = this.value;
+                if (pincode.length === 6) {
+                    fetch(`https://api.postalpincode.in/pincode/${pincode}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data[0].Status === "Success") {
+                                var postOffice = data[0].PostOffice[0];
+                                document.getElementById('state').value = postOffice.State;
+                                document.getElementById('district').value = postOffice.District;
+                            } else {
+                                document.getElementById('state').value = '';
+                                document.getElementById('district').value = '';
+                            }
+                        });
+                } else {
+                    document.getElementById('state').value = '';
+                    document.getElementById('district').value = '';
+                }
+            });
+
+            // Set the minimum date for the date input to today
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementById('date').setAttribute('min', today);
+
+            function validateForm() {
+                var form = document.getElementById('appointmentForm');
+                return form.checkValidity();
+            }
+
+            function getFormData() {
+                var form = document.getElementById('appointmentForm');
+                var formData = new FormData(form);
+                var position = marker.getLatLng();
+                var locationUrl = `https://www.google.com/maps?q=${position.lat},${position.lng}`;
+                var message = `*Service:* ${formData.get('service')}\n*Name:* ${formData.get('name')}\n*Phone:* +91${formData.get('phone')}\n*Alternate Phone:* +91${formData.get('alt_phone')}\n*Date:* ${formData.get('date')}\n*Time:* ${formData.get('time')}\n*Pincode:* ${formData.get('pincode')}\n*State:* ${formData.get('state')}\n*District:* ${formData.get('district')}\n*Address:* ${formData.get('address')}\n*Location:* ${locationUrl}`;
+                return { message, formData };
+            }
+
+            function addBookingToHistory(formData, method) {
+                var previousBookings = JSON.parse(localStorage.getItem('previousBookings')) || [];
+                var booking = {
+                    service: formData.get('service'),
+                    name: formData.get('name'),
+                    phone: formData.get('phone'),
+                    alt_phone: formData.get('alt_phone'),
+                    date: formData.get('date'),
+                    time: formData.get('time'),
+                    pincode: formData.get('pincode'),
+                    state: formData.get('state'),
+                    district: formData.get('district'),
+                    address: formData.get('address'),
+                    method: method,
+                    timestamp: new Date().toISOString()
+                };
+                previousBookings.push(booking);
+                previousBookings.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                localStorage.setItem('previousBookings', JSON.stringify(previousBookings));
+                displayPreviousBookings();
+            }
+
+            function displayPreviousBookings() {
+                var previousBookings = JSON.parse(localStorage.getItem('previousBookings')) || [];
+                var previousBookingsContainer = document.getElementById('previousBookings');
+                previousBookingsContainer.innerHTML = '';
+                previousBookings.forEach(booking => {
+                    var bookingElement = document.createElement('div');
+                    bookingElement.className = 'p-4 bg-gray-100 rounded-lg shadow-md';
+                    bookingElement.innerHTML = `
+                        <p><strong>Service:</strong> ${booking.service}</p>
+                        <p><strong>Name:</strong> ${booking.name}</p>
+                        <p><strong>Phone:</strong> ${booking.phone}</p>
+                        <p><strong>Alternate Phone:</strong> ${booking.alt_phone}</p>
+                        <p><strong>Date:</strong> ${booking.date}</p>
+                        <p><strong>Time:</strong> ${booking.time}</p>
+                        <p><strong>Pincode:</strong> ${booking.pincode}</p>
+                        <p><strong>State:</strong> ${booking.state}</p>
+                        <p><strong>District:</strong> ${booking.district}</p>
+                        <p><strong>Address:</strong> ${booking.address}</p>
+                        <p><strong>Method:</strong> ${booking.method}</p>
+                        <p><strong>Timestamp:</strong> ${new Date(booking.timestamp).toLocaleString()}</p>
+                    `;
+                    previousBookingsContainer.appendChild(bookingElement);
+                });
+            }
+
+            function saveFormData() {
+                var form = document.getElementById('appointmentForm');
+                var formData = new FormData(form);
+                var savedData = {};
+                formData.forEach((value, key) => {
+                    savedData[key] = value;
+                });
+                localStorage.setItem('formData', JSON.stringify(savedData));
+            }
+
+            function loadFormData() {
+                var savedData = JSON.parse(localStorage.getItem('formData'));
+                if (savedData) {
+                    Object.keys(savedData).forEach(key => {
+                        var input = document.getElementById(key);
+                        if (input) {
+                            input.value = savedData[key];
+                        }
+                    });
+                }
+            }
+
+            document.getElementById('appointmentForm').addEventListener('input', saveFormData);
+
+            document.getElementById('whatsappButton').addEventListener('click', function () {
+                if (validateForm()) {
+                    var { message, formData } = getFormData();
+                    var whatsappUrl = `https://wa.me/919502291519?text=${encodeURIComponent(message)}`;
+                    window.open(whatsappUrl, '_blank');
+                    addBookingToHistory(formData, 'WhatsApp');
+                    alert('Thank you for booking service');
+                } else {
+                    alert('Please fill in all mandatory fields.');
+                }
+            });
+
+            document.getElementById('smsButton').addEventListener('click', function () {
+                if (validateForm()) {
+                    var { message, formData } = getFormData();
+                    var smsUrl = `sms:+919502291519?body=${encodeURIComponent(message)}`;
+                    window.open(smsUrl, '_blank');
+                    addBookingToHistory(formData, 'SMS');
+                    alert('Thank you for booking service');
+                } else {
+                    alert('Please fill in all mandatory fields.');
+                }
+            });
+
+            document.getElementById('showBookingsButton').addEventListener('click', function () {
+                var previousBookingsContainer = document.getElementById('previousBookings');
+                if (previousBookingsContainer.classList.contains('hidden')) {
+                    displayPreviousBookings();
+                    previousBookingsContainer.classList.remove('hidden');
+                } else {
+                    previousBookingsContainer.classList.add('hidden');
+                }
+            });
+
+            loadFormData();
+            setInterval(displayPreviousBookings, 5000); // Auto-refresh every 5 seconds
+        });
+    </script>
+</body>
+</html>

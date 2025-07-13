@@ -1,0 +1,203 @@
+<html>
+<head>
+    <title>Complaint Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        <div class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg">
+            <h1 class="text-2xl font-bold mb-6 text-center">Complaint Form</h1>
+            <form id="complaintForm">
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="service">Service <span class="text-red-500">*</span></label>
+                    <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="service" required>
+                        <option value="">Select a Service</option>
+                        <option value="dth_installation">DTH Installation and Service</option>
+                        <option value="home_appliances">Home Appliances (AC, TV, Fridge, Washing machine, water heater, Ironbox etc.)</option>
+                        <option value="computer">Computer and laptop repair </option>
+			<option value="cc_camera">Security camera (cc Camera Repair and installaton)</option>
+			<option value="Mobile">Mobile Phone service </option>
+                        <option value="plumbing">Plumbing (Leaking Tap, Pipes Repair)</option>
+                        <option value="electrician">Electrician (Fan, Lights, Switch Boards, Wires etc.)</option>
+                        <option>Others</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="warranty">Device Warranty <span class="text-red-500">*</span></label>
+                    <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="warranty" required>
+                        <option value="">Select Warranty Status</option>
+                        <option>In Warranty</option>
+                        <option>Out of Warranty</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="complaint">Complaint <span class="text-red-500">*</span></label>
+                    <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="complaint" rows="5" placeholder="Describe your complaint" required></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Name <span class="text-red-500">*</span></label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Your Name" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="phone">Phone Number <span class="text-red-500">*</span></label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="phone" type="text" placeholder="+91 Your Phone Number" value="+91" required>
+                </div>
+                <div class="mb-4 flex space-x-4">
+                    <div class="w-1/2">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="alt-phone">Alternate Phone Number</label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="alt-phone" type="text" placeholder="+91 Your Alternate Phone Number" value="+91">
+                    </div>
+                    <div class="w-1/2">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="service-date">Service Taken Date <span class="text-red-500">*</span></label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="service-date" type="date" required>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between">
+                    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onclick="sendWhatsApp()">
+                        <i class="fab fa-whatsapp"></i> Book via WhatsApp
+                    </button>
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onclick="sendSMS()">
+                        <i class="fas fa-sms"></i> Book via SMS
+                    </button>
+                </div>
+                <p class="text-gray-600 text-sm mt-2">*10 day free service only, parts price may be applicable*</p>
+            </form>
+        </div>
+        <div class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg mt-8">
+            <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="loadPreviousComplaints()">
+                Show Previous Complaints
+            </button>
+            <div id="previousComplaints" class="space-y-4 mt-4">
+                <!-- Previous complaints will be displayed here -->
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateInput = document.getElementById('service-date');
+            const today = new Date();
+            const maxDate = today.toISOString().split('T')[0];
+            const minDate = new Date(today.setDate(today.getDate() - 9)).toISOString().split('T')[0];
+            dateInput.setAttribute('max', maxDate);
+            dateInput.setAttribute('min', minDate);
+
+            loadFormData();
+        });
+
+        function saveFormData() {
+            const formData = {
+                service: document.getElementById('service').value,
+                complaint: document.getElementById('complaint').value,
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                altPhone: document.getElementById('alt-phone').value,
+                serviceDate: document.getElementById('service-date').value,
+                warranty: document.getElementById('warranty').value
+            };
+            localStorage.setItem('formData', JSON.stringify(formData));
+        }
+
+        function loadFormData() {
+            const formData = JSON.parse(localStorage.getItem('formData'));
+            if (formData) {
+                document.getElementById('service').value = formData.service;
+                document.getElementById('complaint').value = formData.complaint;
+                document.getElementById('name').value = formData.name;
+                document.getElementById('phone').value = formData.phone;
+                document.getElementById('alt-phone').value = formData.altPhone;
+                document.getElementById('service-date').value = formData.serviceDate;
+                document.getElementById('warranty').value = formData.warranty;
+            }
+        }
+
+        function saveComplaint(method) {
+            const complaint = {
+                service: document.getElementById('service').value,
+                complaint: document.getElementById('complaint').value,
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                altPhone: document.getElementById('alt-phone').value,
+                serviceDate: document.getElementById('service-date').value,
+                warranty: document.getElementById('warranty').value,
+                method: method,
+                timestamp: new Date().toISOString()
+            };
+            let complaints = JSON.parse(localStorage.getItem('complaints')) || [];
+            complaints.push(complaint);
+            complaints.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            localStorage.setItem('complaints', JSON.stringify(complaints));
+        }
+
+        function loadPreviousComplaints() {
+            const complaints = JSON.parse(localStorage.getItem('complaints')) || [];
+            const previousComplaintsDiv = document.getElementById('previousComplaints');
+            previousComplaintsDiv.innerHTML = '';
+            complaints.forEach((complaint, index) => {
+                const complaintDiv = document.createElement('div');
+                complaintDiv.classList.add('p-4', 'bg-gray-100', 'rounded-lg', 'shadow');
+                complaintDiv.innerHTML = `
+                    <p><strong>Service:</strong> ${complaint.service}</p>
+                    <p><strong>Complaint:</strong> ${complaint.complaint}</p>
+                    <p><strong>Name:</strong> ${complaint.name}</p>
+                    <p><strong>Phone:</strong> ${complaint.phone}</p>
+                    <p><strong>Alternate Phone:</strong> ${complaint.altPhone}</p>
+                    <p><strong>Service Taken Date:</strong> ${complaint.serviceDate}</p>
+                    <p><strong>Device Warranty:</strong> ${complaint.warranty}</p>
+                    <p><strong>Booking Method:</strong> ${complaint.method}</p>
+                    <p><strong>Booking Time:</strong> ${new Date(complaint.timestamp).toLocaleString()}</p>
+                `;
+                previousComplaintsDiv.appendChild(complaintDiv);
+            });
+        }
+
+        function sendWhatsApp() {
+            const service = document.getElementById('service').value;
+            const complaint = document.getElementById('complaint').value;
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const altPhone = document.getElementById('alt-phone').value;
+            const serviceDate = document.getElementById('service-date').value;
+            const warranty = document.getElementById('warranty').value;
+
+            if (service && complaint && name && phone && serviceDate && warranty) {
+                const message = `*Complaint Form*\n*Service:* ${service}\n*Complaint:* ${complaint}\n*Name:* ${name}\n*Phone:* ${phone}\n*Alternate Phone:* ${altPhone}\n*Service Taken Date:* ${serviceDate}\n*Device Warranty:* ${warranty}`;
+                const whatsappUrl = `https://wa.me/919502291519?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+                saveComplaint('WhatsApp');
+                loadPreviousComplaints();
+            } else {
+                alert('Please fill in all required fields.');
+            }
+        }
+
+        function sendSMS() {
+            const service = document.getElementById('service').value;
+            const complaint = document.getElementById('complaint').value;
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const altPhone = document.getElementById('alt-phone').value;
+            const serviceDate = document.getElementById('service-date').value;
+            const warranty = document.getElementById('warranty').value;
+
+            if (service && complaint && name && phone && serviceDate && warranty) {
+                const message = `*Complaint Form*\n*Service:* ${service}\n*Complaint:* ${complaint}\n*Name:* ${name}\n*Phone:* ${phone}\n*Alternate Phone:* ${altPhone}\n*Service Taken Date:* ${serviceDate}\n*Device Warranty:* ${warranty}`;
+                const smsUrl = `sms:+919502291519?body=${encodeURIComponent(message)}`;
+                window.open(smsUrl, '_blank');
+                saveComplaint('SMS');
+                loadPreviousComplaints();
+            } else {
+                alert('Please fill in all required fields.');
+            }
+        }
+
+        document.getElementById('complaintForm').addEventListener('input', saveFormData);
+    </script>
+</body>
+</html>
