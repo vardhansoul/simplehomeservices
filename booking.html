@@ -181,7 +181,7 @@
                 var formData = new FormData(form);
                 var position = marker.getLatLng();
                 var locationUrl = `https://www.google.com/maps?q=${position.lat},${position.lng}`;
-                var message = `*Service:* ${formData.get('service')}\n*Name:* ${formData.get('name')}\n*Phone:* +91${formData.get('phone')}\n*Alternate Phone:* +91${formData.get('alt_phone')}\n*Date:* ${formData.get('date')}\n*Time:* ${formData.get('time')}\n*Pincode:* ${formData.get('pincode')}\n*State:* ${formData.get('state')}\n*District:* ${formData.get('district')}\n*Address:* ${formData.get('address')}\n*Location:* ${locationUrl}`;
+                var message = `*Simple home services:*\n*Service:* ${formData.get('service')}\n*Name:* ${formData.get('name')}\n*Phone:* +91${formData.get('phone')}\n*Alternate Phone:* +91${formData.get('alt_phone')}\n*Date:* ${formData.get('date')}\n*Time:* ${formData.get('time')}\n*Pincode:* ${formData.get('pincode')}\n*State:* ${formData.get('state')}\n*District:* ${formData.get('district')}\n*Address:* ${formData.get('address')}\n*Location:* ${locationUrl}`;
                 return { message, formData };
             }
 
