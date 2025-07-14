@@ -172,7 +172,7 @@
             const warranty = document.getElementById('warranty').value;
 
             if (service && complaint && name && phone && serviceDate && warranty) {
-                const message = `*Simple Home Complaint or feedback*\n*Service:* ${service}\n*Complaint:* ${complaint}\n*Name:* ${name}\n*Phone:* ${phone}\n*Alternate Phone:* ${altPhone}\n*Service Taken Date:* ${serviceDate}\n*Device Warranty:* ${warranty}`;
+                const message = `*Simple Home Complaint or feedback*\n*Service:* ${service}\n*Complaint:* ${complaint}\n*Name:* ${name}\n*Phone:* ${phone}\n*Alternate Phone:* ${altPhone}\n*Service Taken Date:* ${serviceDate}\n*Device Warranty:* ${warranty}\n*Thank you for booking our service, save our number for offers*\n`;
                 const whatsappUrl = `https://wa.me/919490885950?text=${encodeURIComponent(message)}`;
                 window.open(whatsappUrl, '_blank');
                 saveComplaint('WhatsApp');
