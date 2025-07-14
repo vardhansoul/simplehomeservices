@@ -172,7 +172,7 @@
 
             if (service && complaint && name && phone && serviceDate && warranty) {
                 const message = `*Complaint Form*\n*Service:* ${service}\n*Complaint:* ${complaint}\n*Name:* ${name}\n*Phone:* ${phone}\n*Alternate Phone:* ${altPhone}\n*Service Taken Date:* ${serviceDate}\n*Device Warranty:* ${warranty}`;
-                const whatsappUrl = `https://wa.me/919502291519?text=${encodeURIComponent(message)}`;
+                const whatsappUrl = `https://wa.me/919490885950?text=${encodeURIComponent(message)}`;
                 window.open(whatsappUrl, '_blank');
                 saveComplaint('WhatsApp');
                 loadPreviousComplaints();
@@ -192,7 +192,7 @@
 
             if (service && complaint && name && phone && serviceDate && warranty) {
                 const message = `*Complaint Form*\n*Service:* ${service}\n*Complaint:* ${complaint}\n*Name:* ${name}\n*Phone:* ${phone}\n*Alternate Phone:* ${altPhone}\n*Service Taken Date:* ${serviceDate}\n*Device Warranty:* ${warranty}`;
-                const smsUrl = `sms:+919502291519?body=${encodeURIComponent(message)}`;
+                const smsUrl = `sms:+919490885950?body=${encodeURIComponent(message)}`;
                 window.open(smsUrl, '_blank');
                 saveComplaint('SMS');
                 loadPreviousComplaints();
