@@ -860,7 +860,7 @@
             setupNavigation();
             dom.modalDateInput.setAttribute('min', new Date().toISOString().split('T')[0]);
             // Event Listeners
-            dom.loginBtn.addEventListener('click', () => auth.signInWithPopup(provider).catch(err => console.error("Login Error:", err)));
+            dom.loginBtn.addEventListener('click', () => auth.signInWithRedirect(provider);
             dom.logoutBtn.addEventListener('click', () => auth.signOut());
             dom.userMenuTrigger.addEventListener('click', (e) => {
                 e.stopPropagation();
