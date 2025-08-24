@@ -1,146 +1,246 @@
 <!DOCTYPE html>
-<html  lang="en">
+<html lang="en">
 <head>
-  
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <link rel="shortcut icon" href="assets/images/simple20home20servi1cesa-96x96.png" type="image/x-icon">
-  <meta name="description" content="">
-  
-  
-  <title>Home</title>
-  <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
-  <link rel="stylesheet" href="assets/animatecss/animate.css">
-  <link rel="stylesheet" href="assets/dropdown/css/style.css">
-  <link rel="stylesheet" href="assets/socicon/css/styles.css">
-  <link rel="stylesheet" href="assets/theme/css/style.css">
-  <link rel="preload" href="https://fonts.googleapis.com/css?family=Zen+Antique:400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Zen+Antique:400&display=swap"></noscript>
-  <link rel="preload" href="https://fonts.googleapis.com/css?family=Manrope:200,300,400,500,600,700,800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Manrope:200,300,400,500,600,700,800&display=swap"></noscript>
-  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css?v=31QEat"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css?v=31QEat" type="text/css">
-
-  
-  
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Services Kadapa | Book on WhatsApp</title>
+    <meta name="description" content="Get fast and reliable home services in Kadapa. Book plumbing, electrical, AC repair, and more directly on WhatsApp. No forms, no hassle.">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+        :root {
+            --primary-color: #6c63ff;
+            --secondary-color: #25d366; /* WhatsApp Green */
+            --secondary-hover: #1da851;
+            --background-color: #f4f6f9;
+            --card-background: #ffffff;
+            --text-color: #1e293b;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+            --font-family: 'Poppins', sans-serif;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: var(--font-family);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .logo {
+            height: 70px; /* Adjust the size of your logo */
+            margin-bottom: 20px;
+        }
+        /* --- Header & Hero Section --- */
+        .hero {
+            background-color: var(--card-background);
+            text-align: center;
+            padding: 60px 20px 60px 20px;
+        }
+        .hero h1 {
+            color: var(--primary-color);
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+        }
+        .btn-whatsapp i {
+            font-size: 1.5rem;
+        }
+        .btn-whatsapp:hover {
+            background-color: var(--secondary-hover);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.4);
+        }
+        /* --- Section Styling --- */
+        .section {
+            padding: 60px 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+            color: var(--text-color);
+        }
+        /* --- How It Works Section --- */
+        .how-it-works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        .step-card {
+            background-color: var(--card-background);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+        .step-card .icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        .step-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .step-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+        /* --- Services Section --- */
+        #services {
+             background-color: var(--card-background);
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+        .service-item {
+            padding: 25px 15px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            border-color: var(--primary-color);
+        }
+        .service-item i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        .service-item span {
+            font-weight: 500;
+            color: var(--text-color);
+        }
+        /* --- Footer --- */
+        .footer {
+            background-color: var(--text-color);
+            color: #fff;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        .footer p {
+            margin: 0 0 10px 0;
+            color: rgba(255,255,255,0.8);
+        }
+        .footer a {
+            color: #fff;
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1rem; }
+            .section-title { font-size: 1.8rem; }
+            .services-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+        }
+    </style>
 </head>
 <body>
-  
-  <section data-bs-version="5.1" class="menu menu1 cid-tJGsCG1vVL" once="menu" id="menu01-1">
-	
-
-	<nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
-		<div class="container">
-			<div class="navbar-brand">
-				<span class="navbar-logo">
-					<a href="index.html">
-						<img src="assets/images/simple20home20servi1cesa-96x96.webp" alt="logo" style="height: 3rem;">
-					</a>
-				</span>
-				<span class="navbar-caption-wrap"><a class="navbar-caption text-black text-primary display-4" href="index.html">Simple Home service</a></span>
-			</div>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-				<div class="hamburger">
-					<span></span>
-					<span></span>
-					<span></span>
-					<span></span>
-				</div>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item">
-						<a class="nav-link link text-success text-primary display-4" href="index.html#article07-4">Our Services</a>
-					</li><li class="nav-item"><a class="nav-link link text-success text-primary display-4" href="complaint.html">Complaint</a></li></ul>
-				
-				<div class="navbar-buttons mbr-section-btn"><a class="btn btn-primary display-4" href="tel:+919490885950">Call us +91-9490885950</a></div>
-			</div>
-		</div>
-	</nav>
-</section>
-
-<section data-bs-version="5.1" class="header14 cid-tJGD1DIY2H" id="header14-2">
-	
-
-	
-	<div class="mbr-overlay" style="opacity: 0.3; background-color: rgb(255, 255, 255);"></div>
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="card col-12 col-md-12 col-lg-6">
-				<div class="card-wrapper">
-					<div class="card-box align-center">
-						<h1 class="card-title mbr-fonts-style mb-4 display-7"><strong>Professional Home Services </strong><br><strong>serving across in kadapa</strong></h1>
-						<p class="mbr-text mbr-fonts-style mb-4 display-7"><em>Trusted <span style="font-size: 22.4px;">maintenance</span>&nbsp;and repair services—delivered fast by professionals.</em><br>
-						</p>
-						<div class="mbr-section-btn mt-4"><a class="btn btn-primary display-7" href="booking.html"><span class="socicon socicon-whatsapp mbr-iconfont mbr-iconfont-btn"></span>Book service now</a></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-<section data-bs-version="5.1" class="gallery10 cid-uQQUBdBVKJ" id="gallery10-0">
-  
-
-
-  <div class="container-fluid">
-
-      <div class="loop-container">
-        <div class="item display-2" data-linewords="☁️ Plumbing ☁️ Electrician ☁️Dth  ☁️ Computer ☁️ Mobile ☁️ AC ☁️ Fridge☁️ Washing machine☁️ Geyser ☁️ and others" data-direction="-1" data-speed="0.02">☁️ Best offers ☁️ Free delivery ☁️ Perfect design ☁️ Comfort ☁️ Support 24/7 ☁️ Vibes</div>
-        <div class="item display-2" data-linewords="☁️ Plumbing ☁️ Electrician ☁️Dth  ☁️ Computer ☁️ Mobile ☁️ AC ☁️ Fridge☁️ Washing machine☁️ Geyser ☁️ and others" data-direction="-1" data-speed="0.02">☁️ Best offers ☁️ Free delivery ☁️ Perfect design ☁️ Comfort ☁️ Support 24/7 ☁️ Vibes</div>
-      </div>
-    
-  </div>
-</section>
-
-<section data-bs-version="5.1" class="article07 cid-uQWteROqCg" id="article07-4">
-  
-
-  
-  
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="card col-md-12 col-lg-8">
-        <div class="card-wrapper">
-          <h3 class="card-title mbr-fonts-style mbr-white mt-3 mb-4 display-2"><strong>We are Simple Home!</strong></h3>
-          <div class="row card-box align-left">
-            <div class="item features-without-image col-12">
-              <div class="item-wrapper">
-                <h4 class="mbr-section-subtitle mbr-fonts-style mb-3 display-5"><strong>Our Services Includes!</strong><br><strong><br></strong></h4>
-                <p class="mbr-text mbr-fonts-style display-7"><strong>Cleaning Solutions</strong>: Water tank,<br>
-<br><strong>Appliance Repairs</strong>: Tv, Fridge, Washing machine, AC, Cooler, Water motor Pump, 
-<br>
-<br><strong>Plumbing</strong>: Pipe repairs, Taps, Wash basin, Commode  Etc<br>
-<br><strong>Electrical</strong>: Switch repair, Electrical board, Electric water heaters, Iron box , Fans Etc..
-<br>
-<br><strong>DTH repair and installation</strong>: Dish Tv, Airtel Tv, Tata Play, Sun Direct, Videocon Tv
-<br>
-<br><strong>Electronics</strong>: Laptops, Computers, Cellphones repairs<br><br>and more....<br>
-<br>
-<br><strong>Why Choose Us?</strong><br><strong>
-<br></strong>✅ Experienced team<br>✅ Same-Day &amp; Emergency Services
-<br>✅ Affordable &amp; Transparent Pricing
-<br>✅ 100% Satisfaction Guarantee<br><br><strong>Our mission?</strong><br><strong>
-<br></strong>To make your life easier, one repair at a time. We’re not just a service; we’re your home’s best friend. With a quick message on WhatsApp, you can summon us faster than you can say 'emergency repair!'</p>
-              </div>
-            </div>
+    <header class="hero">
+        <div class="container">
+            <img src="logo.png" alt="Simple Home Services Kadapa Logo" class="logo">
             
-            
-            
-          </div>
-          
+            <h1>Simple Home Services, Simplified.</h1>
+            <p>Need a plumber, electrician, or AC repair? Skip the hassle of apps and forms. Chat with us directly on WhatsApp to book a service instantly.</p>
+            <a href="https://wa.me/919502291519?text=Hello! I would like to book a home service in Kadapa." class="btn-whatsapp" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+                Book Now on WhatsApp
+            </a>
         </div>
-      </div>
-    </div>
-  </div>
-</section><section><a href="https://mobiri.se"></a><a href="https://mobiri.se"></a></section><script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script>  <script src="assets/theme/js/script.js"></script>  
-  
-  
-  <input name="animation" type="hidden">
-  </body>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">How It Works</h2>
+                <div class="how-it-works-grid">
+                    <div class="step-card">
+                        <div class="icon"><i class="fa-solid fa-paper-plane"></i></div>
+                        <h3>1. Send a Message</h3>
+                        <p>Click the button to start a chat with us on WhatsApp.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="icon"><i class="fa-solid fa-comments"></i></div>
+                        <h3>2. Describe Your Need</h3>
+                        <p>Tell us what service you need. You can even send a photo of the problem.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="icon"><i class="fa-solid fa-calendar-check"></i></div>
+                        <h3>3. Get a Pro</h3>
+                        <p>We'll confirm the details and schedule a verified professional for you.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section">
+            <div class="container">
+                <h2 class="section-title">Our Services</h2>
+                <div class="services-grid">
+                    <div class="service-item"><i class="fas fa-wrench"></i> <span>Plumbing</span></div>
+                    <div class="service-item"><i class="fas fa-bolt"></i> <span>Electrical</span></div>
+                    <div class="service-item"><i class="fas fa-broom"></i> <span>Maid Service</span></div>
+                    <div class="service-item"><i class="fas fa-tint"></i> <span>Water Tank Cleaning</span></div>
+                    <div class="service-item"><i class="fas fa-snowflake"></i> <span>AC Repair</span></div>
+                    <div class="service-item"><i class="fas fa-hammer"></i> <span>Carpentry</span></div>
+                    <div class="service-item"><i class="fas fa-laptop-code"></i> <span>Computer Repair</span></div>
+                    <div class="service-item"><i class="fas fa-mobile-alt"></i> <span>Phone Repair</span></div>
+                    <div class="service-item"><i class="fas fa-video"></i> <span>CCTV Installation</span></div>
+                    <div class="service-item"><i class="fas fa-tv"></i> <span>TV Repair</span></div>
+                    <div class="service-item"><i class="fas fa-thermometer-frigid"></i> <span>Fridge Repair</span></div>
+                    <div class="service-item"><i class="fas fa-fan"></i> <span>Fan Repair</span></div>
+                    <div class="service-item"><i class="fas fa-paint-roller"></i> <span>Painting</span></div>
+                    <div class="service-item"><i class="fas fa-satellite-dish"></i> <span>DTH</span></div>
+                    <div class="service-item"><i class="fas fa-car"></i> <span>Car Driver</span></div>
+                    <div class="service-item"><i class="fas fa-ellipsis-h"></i> <span>Other Services</span></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Simple Home Services Kadapa. All Rights Reserved.</p>
+            <p>Fast, Reliable, and Right on WhatsApp.</p>
+            <p><a href="tc.html">Terms and Conditions</a></p>
+        </div>
+    </footer>
+</body>
 </html>
