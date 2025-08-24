@@ -440,15 +440,14 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const firebaseConfig = {
+          const firebaseConfig = {
                 apiKey: "AIzaSyDHbUeNOD14mMtCXrc40bNoLEsXYvWd2IE",
                 authDomain: "simple-home-services-oo.firebaseapp.com",
-                databaseURL: "https://simple-home-services-oo-default-rtdb.firebaseio.com",
                 projectId: "simple-home-services-oo",
-                storageBucket: "simple-home-services-oo.appspot.com",
+                storageBucket: "simple-home-services-oo.firebasestorage.app",
                 messagingSenderId: "1097590449578",
-                appId: "1:1097590449578:web:1f6093cad7868e358037d3"
-            };
+                appId: "1:1097590449578:web:1f6093cad7868e358037d3",
+                measurementId: "G-PFXGL3FJ0T"
 
             try {
                 if (!firebase.apps.length) {
