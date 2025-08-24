@@ -79,6 +79,7 @@
         .user-avatar { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary-color); }
         .user-name { font-weight: 600; font-size: 1rem; }
         .user-email { font-size: 0.8rem; color: var(--text-light); }
+        
         #userMenuContainer { display: none; position: relative; }
         .user-menu-trigger { background: none; border: none; padding: 0; cursor: pointer; border-radius: 50%; }
         .user-menu-trigger .user-avatar { transition: box-shadow 0.2s ease; }
@@ -119,6 +120,7 @@
             transition: all 0.2s ease;
         }
         .btn-logout-popup:hover { background: var(--danger-color); color: white; border-color: var(--danger-color); }
+        
         .btn {
             padding: 10px 16px; border: none; border-radius: 12px; font-size: 14px;
             font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: inline-flex;
@@ -137,10 +139,12 @@
         .tab-panel { display: none; }
         .tab-panel.active { display: block; animation: fadeIn 0.5s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
         form { display: flex; flex-direction: column; gap: 12px; } 
         .form-group { display: flex; flex-direction: column; position: relative; }
         label { font-weight: 500; margin-bottom: 4px; color: var(--text-color); font-size: 0.9rem; }
         input, select, textarea, .form-button { width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 12px; font-family: inherit; font-size: 1rem; color: var(--text-color); background-color: var(--background-color); transition: all 0.3s ease; } 
+        
         input:focus, select:focus, textarea:focus { border-color: var(--primary-color); box-shadow: 0 0 0 4px var(--input-focus-shadow); outline: none; background-color: var(--card-background); }
         .form-button { text-align: left; cursor: pointer; background-color: var(--card-background); display: flex; justify-content: space-between; align-items: center; }
         .form-button:hover { border-color: var(--primary-color); }
@@ -150,6 +154,7 @@
         @media (min-width: 768px) { .form-row { grid-template-columns: 1fr 1fr; } }
         .error-message { color: var(--danger-color); font-size: 0.8rem; margin-top: 4px; display: none; animation: fadeIn 0.3s; }
         input.invalid, select.invalid, .form-button.invalid { border-color: var(--danger-color) !important; }
+        
         /* MODIFICATION: Style for calendar icon in date input */
         .input-with-icon { position: relative; }
         .input-with-icon .input-icon {
@@ -161,6 +166,7 @@
             pointer-events: none; /* Allows click to pass through to the input */
         }
         input[type="date"]::-webkit-calendar-picker-indicator { opacity: 0; cursor: pointer; }
+        
         #mapid { height: 250px; width: 100%; margin-top: 10px; border-radius: 16px; box-shadow: 0 4px 15px var(--shadow-color); border: 1px solid var(--border-color); z-index: 1; }
         .address-details { margin-top: 8px; padding: 10px; border-radius: 12px; background: #f8f9fa; border: 1px solid var(--border-color); }
         .pincode-loader {
@@ -218,12 +224,14 @@
         .remove-btn:hover { transform: scale(1.1); }
         .cart-footer { display: flex; justify-content: flex-end; margin-top: 15px; gap: 10px; }
         .cart-empty { font-size: 0.9rem; color: var(--text-light); text-align: center; padding: 10px; }
+        
         /* MODIFICATION: Further reduced task bar and button size */
         .task-bar { display: flex; justify-content: center; gap: 8px; padding: 12px; background: var(--card-background); border-radius: 20px 20px 0 0; margin-top: 15px; flex-shrink: 0; box-shadow: 0 -4px 15px var(--shadow-color); z-index: 10; }
         .task-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 6px 10px; border-radius: 12px; background: var(--background-color); color: var(--text-light); text-decoration: none; font-weight: 500; font-size: 0.75rem; transition: all 0.3s ease; flex: 1; max-width: 130px; border: 1px solid var(--border-color); cursor: pointer; }
         .task-btn i { font-size: 1.1rem; margin-bottom: 3px; }
         .task-btn:hover { background: var(--primary-color); color: white; transform: translateY(-3px); box-shadow: 0 6px 15px rgba(108,99,255,0.2); }
         .task-btn.active { background: var(--primary-gradient); color: white; border-color: var(--primary-color); }
+        
         .booking-success-container { text-align: center; padding: 20px; background: var(--background-color); border-radius: 12px; margin-top: 20px; border: 1px solid var(--border-color); animation: fadeIn 0.5s; }
         .booking-success-container .fa-check-circle { font-size: 3rem; color: var(--success-color); }
         .booking-success-container h3 { margin-top: 15px; color: var(--text-color); }
@@ -240,6 +248,7 @@
                 <i class="fab fa-google"></i> Continue with Google
             </button>
         </div>
+
         <div id="app-content">
             <header id="app-header" class="container">
                 <div style="flex-grow: 1;">
@@ -264,6 +273,7 @@
                     </div>
                 </div>
             </header>
+            
             <div class="task-bar">
                 <button class="task-btn active" id="newServiceBtn">
                     <i class="fas fa-plus-circle"></i>
@@ -274,6 +284,7 @@
                     <span>My Bookings</span>
                 </button>
             </div>
+            
             <main class="tab-content-wrapper">
                 <div id="booking-panel" class="tab-panel active">
                     <form id="serviceForm" novalidate>
@@ -289,6 +300,7 @@
                                 <span class="error-message">Please enter a valid 10-digit phone number.</span>
                             </div>
                         </div>
+
                          <div class="form-group">
                             <label>Selected Services:</label>
                             <div id="selectedServicesCart">
@@ -299,6 +311,7 @@
                             </button>
                             <span class="error-message" id="services-error">Please select at least one service.</span>
                         </div>
+                        
                         <div class="form-group">
                             <label>Date & Location:</label>
                             <input type="hidden" id="date" name="date" required>
@@ -343,6 +356,7 @@
             </main>
         </div>
     </div>
+
     <div id="serviceModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -412,12 +426,14 @@
                 </div>
                 <p style="font-size: 0.9em; color: var(--text-light);">Drag the pin to your exact location for accurate service.</p>
                 <div id="mapid"></div>
+                
                 <div class="cart-footer" style="margin-top: 20px;">
                     <button type="submit" class="btn btn-primary">Confirm Details</button>
                 </div>
             </form>
         </div>
     </div>
+
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
@@ -433,6 +449,7 @@
                 messagingSenderId: "1097590449578",
                 appId: "1:1097590449578:web:1f6093cad7868e358037d3"
             };
+
             try {
                 if (!firebase.apps.length) {
                     firebase.initializeApp(firebaseConfig);
@@ -440,11 +457,14 @@
             } catch (e) {
                 console.error("Firebase initialization error:", e);
             }
+
             const auth = firebase.auth();
             const database = firebase.database();
             const provider = new firebase.auth.GoogleAuthProvider();
+            
             const businessNumber = '+919502291519';
             const bookingHistoryKey = 'bookingHistory';
+
             const servicesData = {
                 "Home Needs": [
                     { name: "Plumbing", icon: "fas fa-wrench" },
@@ -473,6 +493,7 @@
                      { name: "Other", value: "Other Services", icon: "fas fa-ellipsis-h" }
                 ]
             };
+
             const dom = {
                 loginContainer: document.getElementById('loginContainer'),
                 appContent: document.getElementById('app-content'),
@@ -525,14 +546,17 @@
                 servicesError: document.getElementById('services-error'),
                 locationError: document.getElementById('location-error'),
             };
+
             let userId = null;
             let mymap, userMarker;
             let mapInitialized = false;
             let pincodeData = { district: 'N/A', state: 'N/A' };
             let serviceCart = JSON.parse(localStorage.getItem('serviceCart')) || [];
             let bookingListener = null;
+
             const saveToLocalStorage = (key, data) => localStorage.setItem(key, JSON.stringify(data));
             const loadFromLocalStorage = (key) => JSON.parse(localStorage.getItem(key)) || null;
+
             const openModal = (modalId) => {
                 const modal = document.getElementById(modalId);
                 if (modal) {
@@ -545,10 +569,12 @@
                     }
                 }
             };
+
             const closeModal = (modalId) => {
                 const modal = document.getElementById(modalId);
                 if (modal) modal.style.display = 'none';
             };
+
             const handleAuthStateChange = (user) => {
                 if (user) {
                     userId = user.uid;
@@ -556,14 +582,18 @@
                     dom.appContent.style.display = 'flex';
                     dom.userMenuContainer.style.display = 'block';
                     document.body.style.alignItems = 'flex-start';
+                    
                     const photoURL = user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName || 'User')}&background=6c63ff&color=fff`;
                     const displayName = user.displayName || 'User';
                     const email = user.email || '';
+                    
                     dom.userAvatarTrigger.src = photoURL;
                     dom.userAvatarPopup.src = photoURL;
                     dom.userNamePopup.textContent = displayName;
                     dom.userEmailPopup.textContent = email;
+                    
                     if (!dom.nameInput.value) dom.nameInput.value = displayName;
+                    
                     syncPendingBookings();
                     startRealTimeSync();
                 } else {
@@ -576,6 +606,7 @@
                 }
                 renderBookingHistory();
             };
+
             const renderServiceGrid = () => {
                 dom.serviceSelectionGrid.innerHTML = '';
                 for (const category in servicesData) {
@@ -595,6 +626,7 @@
                 }
                 document.querySelectorAll('.service-item').forEach(item => item.addEventListener('click', handleServiceSelection));
             };
+
             const updateCartDisplay = (cartContainer = dom.selectedServicesCart) => {
                 if (serviceCart.length === 0) {
                     cartContainer.innerHTML = '<div class="cart-empty">No services added yet.</div>';
@@ -618,12 +650,14 @@
                     }
                 }
             };
+            
             const updateModalCartDisplay = () => {
                 updateCartDisplay(dom.modalCartDisplay);
                  document.querySelectorAll('.service-item').forEach(item => {
                     item.classList.toggle('active', serviceCart.includes(item.dataset.value));
                 });
             };
+
             const handleServiceSelection = (e) => {
                 const service = e.currentTarget.dataset.value;
                 const index = serviceCart.indexOf(service);
@@ -632,11 +666,13 @@
                 saveToLocalStorage('serviceCart', serviceCart);
                 updateModalCartDisplay();
             };
+
             const handleRemoveService = (e) => {
                 serviceCart = serviceCart.filter(s => s !== e.target.dataset.service);
                 saveToLocalStorage('serviceCart', serviceCart);
                 updateCartDisplay();
             };
+
             const initMap = () => {
                 if(mapInitialized) return;
                 mymap = L.map('mapid').setView([14.4673, 78.8242], 13);
@@ -651,6 +687,7 @@
                 });
                 mymap.setView(initialLatLng, dom.latInput.value ? 17 : 13);
             };
+
             const handlePincodeLookup = async (pincode) => {
                 dom.modalAddressDetailsDiv.style.display = 'none';
                 if (pincode.length !== 6) return;
@@ -671,6 +708,7 @@
                     dom.pincodeLoader.style.display = 'none';
                 }
             };
+            
             const handleDateTimeLocationFormSubmit = (e) => {
                 e.preventDefault();
                 dom.dateInput.value = dom.modalDateInput.value;
@@ -691,6 +729,7 @@
                 dom.locationError.style.display = 'none';
                 closeModal('dateTimeLocationModal');
             };
+            
             const showError = (input, message) => {
                 input.classList.add('invalid');
                 const errorSpan = input.parentElement.querySelector('.error-message');
@@ -699,6 +738,7 @@
                     errorSpan.style.display = 'block';
                 }
             };
+
             const clearError = (input) => {
                 input.classList.remove('invalid');
                 const errorSpan = input.parentElement.querySelector('.error-message');
@@ -706,6 +746,7 @@
                     errorSpan.style.display = 'none';
                 }
             };
+
             const validateForm = () => {
                 let isValid = true;
                 document.querySelectorAll('.error-message').forEach(e => e.style.display = 'none');
@@ -713,9 +754,10 @@
                 if (!dom.nameInput.value.trim()) { showError(dom.nameInput, 'Name is required.'); isValid = false; }
                 if (!dom.phoneInput.value.match(/^[6-9]\d{9}$/)) { showError(dom.phoneInput, 'Please enter a valid 10-digit phone number.'); isValid = false; }
                 if (serviceCart.length === 0) { dom.selectServiceBtn.classList.add('invalid'); dom.servicesError.style.display = 'block'; isValid = false; }
-                if (!dom.dateInput.value || !dom.timeInput.value || !dom.pincodeInput.value) { dom.selectDateTimeLocationBtn.classList.add('invalid'); dom.locationError.style.display = 'none'; isValid = false; }
+                if (!dom.dateInput.value || !dom.timeInput.value || !dom.pincodeInput.value) { dom.selectDateTimeLocationBtn.classList.add('invalid'); dom.locationError.style.display = 'block'; isValid = false; }
                 return isValid;
             };
+
             const handleServiceFormSubmit = (e) => {
                 e.preventDefault();
                 if (!validateForm()) return;
@@ -739,22 +781,17 @@
                 saveBookingToHistory(formData);
                 showSuccessMessage(formData);
             };
+
             const showSuccessMessage = (formData) => {
                 dom.serviceForm.style.display = 'none';
                 dom.bookingSuccessMessage.style.display = 'block';
                 const locationLink = `https://maps.google.com/?q=${formData.lat},${formData.lng}`;
-                const message = `*Hi, Simple Home Service Booking Request*
-*Services*: ${formData.services}
-*Name*: ${formData.name}
-*Phone*: ${formData.phone}
-*Date*: ${new Date(formData.date).toLocaleDateString('en-IN')}
-*Time*: ${formData.time}
-*Location*: ${locationLink}
-*Details*: ${formData.details}`;
+                const message = `*Hi, Simple Home Service Booking Request*\n\n*Services*: ${formData.services}\n*Name*: ${formData.name}\n*Phone*: ${formData.phone}\n*Date*: ${new Date(formData.date).toLocaleDateString('en-IN')}\n*Time*: ${formData.time}\n*Location*: ${locationLink}\n*Details*: ${formData.details}`;
                 const encoded = encodeURIComponent(message.trim());
                 dom.whatsappBtn.onclick = () => window.open(`https://wa.me/${businessNumber}?text=${encoded}`, '_blank');
                 dom.smsBtn.onclick = () => window.open(`sms:${businessNumber}?body=${encoded}`, '_blank');
             };
+            
             const resetBookingFlow = () => {
                  dom.serviceForm.reset();
                  dom.bookingSuccessMessage.style.display = 'none';
@@ -767,6 +804,7 @@
                  document.querySelectorAll('.error-message').forEach(e => e.style.display = 'none');
                  document.querySelectorAll('.invalid').forEach(e => e.classList.remove('invalid'));
             };
+
             const saveBookingToHistory = (booking) => {
                 let history = loadFromLocalStorage(bookingHistoryKey) || [];
                 history.unshift(booking);
@@ -776,6 +814,7 @@
                 }
                 renderBookingHistory();
             };
+
             const renderBookingHistory = () => {
                 const history = loadFromLocalStorage(bookingHistoryKey) || [];
                 const userHistory = userId ? history.filter(b => b.userId === userId) : [];
@@ -802,6 +841,7 @@
                     </div>`;
                 }).join('');
             };
+            
             const syncPendingBookings = async () => {
                 if (!userId || !navigator.onLine) return;
                 let history = loadFromLocalStorage(bookingHistoryKey) || [];
@@ -821,6 +861,7 @@
                     renderBookingHistory();
                 }
             };
+            
             const startRealTimeSync = () => {
                 if (userId && !bookingListener) {
                     const userBookingsRef = database.ref(`users/${userId}/bookings`);
@@ -835,12 +876,14 @@
                     });
                 }
             };
+            
             const stopRealTimeSync = () => {
                 if (bookingListener && userId) {
                     database.ref(`users/${userId}/bookings`).off('value', bookingListener);
                     bookingListener = null;
                 }
             };
+
             const setupNavigation = () => {
                 const taskBtns = [dom.newServiceBtn, dom.previousBookingsBtn];
                 const panels = { newServiceBtn: 'booking-panel', previousBookingsBtn: 'history-panel' };
@@ -853,14 +896,17 @@
                     });
                 });
             };
+
             // --- INITIALIZATION ---
             auth.onAuthStateChanged(handleAuthStateChange);
             renderServiceGrid();
             updateCartDisplay();
             setupNavigation();
+            
             dom.modalDateInput.setAttribute('min', new Date().toISOString().split('T')[0]);
+            
             // Event Listeners
-            dom.loginBtn.addEventListener('click', () => auth.signInWithRedirect(provider);
+            dom.loginBtn.addEventListener('click', () => auth.signInWithPopup(provider).catch(err => console.error("Login Error:", err)));
             dom.logoutBtn.addEventListener('click', () => auth.signOut());
             dom.userMenuTrigger.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -871,6 +917,7 @@
                     dom.userMenuPopup.classList.remove('show');
                 }
             });
+
             dom.selectServiceBtn.addEventListener('click', () => {
                 updateModalCartDisplay();
                 openModal('serviceModal');
@@ -890,29 +937,5 @@
             dom.modalPincodeInput.addEventListener('input', e => handlePincodeLookup(e.target.value));
         });
     </script>
-
-    <!-- Added requested scripts -->
-    <script>
-        Website2APK.shareIntent();
-    </script>
-    <script>
-        Website2APK.showToast("This is a Toast");
-    </script>
-    <script>
-        Website2APK.exitApp();
-    </script>
-    <script>
-        Website2APK.showAboutDialog();
-    </script>
-    <script>
-        Website2APK.openExternal("https://vardhansoul.github.io/simplehomeservices/booking.html");
-    </script>
-    <script>
-        Website2APK.rateUs();
-    </script>
-    <script>
-        Website2APK.askEnableGPS();
-    </script>
-
 </body>
 </html>
