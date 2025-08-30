@@ -231,7 +231,7 @@
 <body>
     <div class="main-wrapper">
         <div id="loginContainer" class="container">
-            <img src="logo.png" alt="House Services Illustration" class="login-illustration">
+            <img src="https://placehold.co/250x200/6c63ff/f4f6f9?text=ServiceCo" alt="House Services Illustration" class="login-illustration">
             <h1>Simple Home Services</h1>
             <p>Sign in to continue your bookings</p>
             <button id="loginBtn" class="btn btn-google">
@@ -361,7 +361,7 @@
                 </div>
             </div>
             <div id="serviceSelectionGrid">
-                </div>
+            </div>
             <div class="cart-footer">
                 <button type="button" class="btn btn-primary" id="proceedToBookingBtn"><i class="fas fa-arrow-right"></i> Confirm Services</button>
             </div>
@@ -425,6 +425,10 @@
         </div>
     </div>
 
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
@@ -775,7 +779,7 @@
             const showSuccessMessage = (formData) => {
                 dom.serviceForm.style.display = 'none';
                 dom.bookingSuccessMessage.style.display = 'block';
-                const locationLink = (formData.lat && formData.lng) ? `https://maps.google.com/?q=${formData.lat},${formData.lng}` : 'Location not specified.';
+                const locationLink = (formData.lat && formData.lng) ? `https://www.google.com/maps?q=${formData.lat},${formData.lng}` : 'Location not specified.';
                 const message = `*New Service Request*\n\n*Services*: ${formData.services}\n*Name*: ${formData.name}\n*Phone*: ${formData.phone}\n*Date*: ${new Date(formData.date).toLocaleDateString('en-IN')}\n*Time*: ${formData.time}\n*Address*: ${formData.address}, ${formData.pincode}\n*Location*: ${locationLink}\n*Details*: ${formData.details}`;
                 const encoded = encodeURIComponent(message.trim());
                 dom.whatsappBtn.onclick = () => window.open(`https://wa.me/${businessNumber}?text=${encoded}`, '_blank');
@@ -792,8 +796,8 @@
                  saveToLocalStorage('serviceCart', []);
                  updateCartDisplay();
                  document.querySelectorAll('.error-message, .invalid').forEach(el => {
-                    el.style.display = 'none';
-                    el.classList.remove('invalid');
+                     el.style.display = 'none';
+                     el.classList.remove('invalid');
                  });
             };
 
@@ -815,22 +819,22 @@
                      return;
                 }
                 dom.bookingsList.innerHTML = userHistory.map(b => {
-                    const locLink = (b.lat && b.lng) ? `<a href="https://maps.google.com/?q=${b.lat},${b.lng}" target="_blank" style="text-decoration: none; color: inherit;"><strong>View on Map</strong></a>` : '<strong>N/A</strong>';
+                    const locLink = (b.lat && b.lng) ? `<a href="https://www.google.com/maps?q=${b.lat},${b.lng}" target="_blank" style="text-decoration: none; color: inherit;"><strong>View on Map</strong></a>` : '<strong>N/A</strong>';
                     const syncClass = b.synced ? 'sync-synced' : 'sync-pending';
                     const syncText = b.synced ? 'Synced' : 'Pending';
                     return `<div class="booking-item">
-                        <div class="booking-header">
-                           <span class="booking-services">${b.services}</span>
-                           <span class="sync-status-badge ${syncClass}">${syncText}</span>
-                        </div>
-                        <div class="booking-details-grid">
-                            <div class="booking-detail"><i class="fas fa-user"></i> <strong>${b.name}</strong></div>
-                            <div class="booking-detail"><i class="fas fa-phone"></i> <strong>${b.phone}</strong></div>
-                            <div class="booking-detail"><i class="fas fa-calendar-alt"></i> <strong>${new Date(b.date).toLocaleDateString('en-IN', {day: 'numeric', month: 'long', year: 'numeric'})}</strong></div>
-                            <div class="booking-detail"><i class="fas fa-clock"></i> <strong>${b.time}</strong></div>
-                            <div class="booking-detail"><i class="fas fa-map-marker-alt"></i> ${locLink}</div>
-                        </div>
-                    </div>`;
+                            <div class="booking-header">
+                               <span class="booking-services">${b.services}</span>
+                               <span class="sync-status-badge ${syncClass}">${syncText}</span>
+                            </div>
+                            <div class="booking-details-grid">
+                                <div class="booking-detail"><i class="fas fa-user"></i> <strong>${b.name}</strong></div>
+                                <div class="booking-detail"><i class="fas fa-phone"></i> <strong>${b.phone}</strong></div>
+                                <div class="booking-detail"><i class="fas fa-calendar-alt"></i> <strong>${new Date(b.date).toLocaleDateString('en-IN', {day: 'numeric', month: 'long', year: 'numeric'})}</strong></div>
+                                <div class="booking-detail"><i class="fas fa-clock"></i> <strong>${b.time}</strong></div>
+                                <div class="booking-detail"><i class="fas fa-map-marker-alt"></i> ${locLink}</div>
+                            </div>
+                        </div>`;
                 }).join('');
             };
 
@@ -908,7 +912,13 @@
             dom.modalDateInput.setAttribute('min', new Date().toISOString().split('T')[0]);
 
             // Event Listeners
-            dom.loginBtn.addEventListener('click', () => auth.signInWithRedirect(provider));
+            dom.loginBtn.addEventListener('click', async () => {
+                try {
+                    await auth.signInWithPopup(provider);
+                } catch (error) {
+                    console.error("Popup sign-in error:", error);
+                }
+            });
             dom.logoutBtn.addEventListener('click', () => auth.signOut());
 
             dom.userMenuTrigger.addEventListener('click', (e) => {
