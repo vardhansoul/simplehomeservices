@@ -1,13 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Srinu Home Services Booking</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6c63ff">
+    
+    <!-- SEO: Primary Meta Tags -->
+    <title>Srinu Home Services | Expert Plumbing, Electrical & AC Repair in Kadapa</title>
+    <meta name="title" content="Srinu Home Services | Expert Plumbing, Electrical & AC Repair in Kadapa">
+    <meta name="description" content="Book reliable home services in Kadapa. Plumbing, Electrical, AC Repair, Cleaning, RO Service & more. Fast service, verified professionals. Call +91 9490885950.">
+    <meta name="keywords" content="Home Services Kadapa, Plumber Kadapa, Electrician Kadapa, AC Repair Kadapa, RO Service, House Cleaning, Srinu Home Services">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="author" content="Srinu Home Services">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://simple-home-services-oo.firebaseapp.com/">
+    <meta property="og:title" content="Srinu Home Services | Best Home Maintenance in Kadapa">
+    <meta property="og:description" content="One-stop solution for all home repair needs. Instant booking for Plumbing, Electrical, and AC services.">
+    <meta property="og:image" content="https://simple-home-services-oo.firebaseapp.com/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://simple-home-services-oo.firebaseapp.com/">
+    <meta property="twitter:title" content="Srinu Home Services | Expert Home Repair">
+    <meta property="twitter:description" content="Book expert home services in Kadapa instantly.">
+    <meta property="twitter:image" content="https://simple-home-services-oo.firebaseapp.com/og-image.jpg">
+
+    <!-- PWA: Manifest & Icons -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- External Assets -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+    <!-- AIO: JSON-LD Structured Data for AI & Search Engines -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HomeAndConstructionBusiness",
+      "name": "Srinu Home Services",
+      "image": "https://simple-home-services-oo.firebaseapp.com/logo.png",
+      "@id": "https://simple-home-services-oo.firebaseapp.com",
+      "url": "https://simple-home-services-oo.firebaseapp.com",
+      "telephone": "+919490885950",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Kadapa",
+        "addressLocality": "Kadapa",
+        "addressRegion": "Andhra Pradesh",
+        "postalCode": "516001",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 14.4673,
+        "longitude": 78.8242
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+        ],
+        "opens": "08:00",
+        "closes": "20:00"
+      },
+      "priceRange": "₹₹",
+      "servesCuisine": "Home Services",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Home Maintenance Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Plumbing" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Electrical Works" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AC Repair & Service" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "RO Water Purifier Service" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "CCTV Installation" } }
+        ]
+      }
+    }
+    </script>
+
     <style>
         :root {
             --primary-color: #6c63ff;
@@ -59,6 +138,21 @@
             box-shadow: 0 8px 32px var(--shadow-color);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             padding: 2rem;
+        }
+
+        /* --- Install PWA Banner --- */
+        #installContainer {
+            display: none;
+            background: var(--primary-gradient);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
         }
 
         /* Responsive Typography */
@@ -182,8 +276,8 @@
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.25rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjusted width to fit content better */
+            gap: 1.2rem;
         }
 
         .feature-item {
@@ -192,16 +286,37 @@
             border-radius: 16px;
             text-align: center;
             transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
         }
 
         .feature-item:hover {
             transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
         .feature-item i {
-            font-size: clamp(2rem, 5vw, 3rem);
+            font-size: 2rem;
             color: var(--primary-color);
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .feature-item h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-item p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin: 0;
+            line-height: 1.4;
         }
 
         /* Home Footer Styles */
@@ -354,7 +469,7 @@
              cursor: pointer;
              transition: all 0.3s ease;
              display: inline-flex;
-            align-items: center;
+             align-items: center;
              justify-content: center;
              gap: 0.5rem;
              box-shadow: 0 4px 15px rgba(0,0,0,0.05);
@@ -863,6 +978,16 @@
 </head>
 <body>
     <div class="main-wrapper">
+        
+        <!-- PWA Install Prompt (Visible only when installable) -->
+        <div id="installContainer">
+            <div style="display:flex; align-items:center; gap:10px;">
+                <i class="fas fa-download"></i>
+                <span>Install App for easier booking</span>
+            </div>
+            <button style="background:white; color:var(--primary-color); border:none; padding:5px 12px; border-radius:15px; font-weight:bold;">Install</button>
+        </div>
+
         <!-- HOMEPAGE -->
         <div id="homeContainer" class="container">
             <div class="home-hero">
@@ -872,7 +997,6 @@
                 </div>
                 <p>Your one-stop solution for all home repair and maintenance needs in Kadapa.</p>
                 
-                <!-- Updated Buttons Container -->
                 <div class="hero-btn-container">
                     <button id="getStartedBtn" class="btn-get-started">
                         Book Service
@@ -885,73 +1009,13 @@
             <div class="home-features">
                 <h2>Our Popular Services</h2>
                 <div class="features-grid">
-                    <div class="feature-item">
-                        <i class="fas fa-wrench"></i>
-                        <h3>Plumbing</h3>
-                        <p>Fix leaks, install fixtures, and ensure your pipes are in perfect condition.</p>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-bolt"></i>
-                        <h3>Electrical</h3>
-                        <p>From wiring to repairs, we handle all your electrical needs safely.</p>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-snowflake"></i>
-                        <h3>AC Service</h3>
-                        <p>Expert installation, repair, and servicing for all AC brands to keep you cool.</p>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-laptop-code"></i>
-                        <h3>Computer Repair</h3>
-                        <p>Get your laptops and desktops running smoothly again.</p>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-tv"></i>
-                        <h3>TV & Electronics</h3>
-                        <p>Expert repair for your TVs, refrigerators, and other appliances.</p>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-paint-roller"></i>
-                        <h3>Painting</h3>
-                        <p>Interior and exterior painting to give your home a fresh, vibrant look.</p>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-file-invoice-dollar"></i>
-                        <h3>Tax Filing</h3>
-                        <p>Professional assistance with Income Tax, GST, and general accounting.</p>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-video"></i>
-                        <h3>CCTV Security</h3>
-                        <p>Secure your home with advanced CCTV installation and maintenance.</p>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-hammer"></i>
-                        <h3>Carpentry</h3>
-                        <p>Furniture assembly, repairs, and custom woodwork solutions.</p>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-filter"></i>
-                        <h3>RO Service</h3>
-                        <p>Complete service for water purifiers, including filter changes and repair.</p>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-plug"></i>
-                        <h3>Home Appliances</h3>
-                        <p>Expert repair for washing machines, refrigerators, and microwaves.</p>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-car"></i>
-                        <h3>Car Driver</h3>
-                        <p>Reliable temporary or permanent drivers for your personal vehicle.</p>
-                    </div>
+                    <!-- Services will be dynamically injected here by JS -->
                 </div>
                 <div style="margin-top: 2rem;">
                     <button id="showMoreServicesBtn" class="btn" style="background: transparent; border: 2px solid var(--primary-color); color: var(--primary-color);">Show More Services</button>
                 </div>
             </div>
             
-            <!-- Added Footer -->
             <div class="home-footer">
                 <div class="footer-links">
                     <a href="tc.html" id="termsBtn">Terms & Conditions</a>
@@ -1087,22 +1151,19 @@
     <!-- Service Selection Modal -->
     <div id="serviceModal" class="modal">
         <div class="modal-content">
-            <!-- 1. Fixed Header Section (Title + Selected Cart) -->
             <div class="modal-header-fixed">
                 <div class="modal-header" style="margin-bottom: 0;">
                     <h3>Select Services</h3>
                     <span class="close-btn" data-modal="serviceModal">×</span>
                 </div>
-                <div id="modalCartDisplay" style="display: none;"></div> <!-- Hidden, used for logic -->
+                <div id="modalCartDisplay" style="display: none;"></div> 
             </div>
             
-            <!-- 2. Scrollable Body (Service List) -->
             <div class="modal-scrollable-body">
                 <div id="serviceSelectionGrid">
                 </div>
             </div>
 
-            <!-- 3. Fixed Footer (Confirm Button) -->
             <div class="modal-footer-fixed">
                 <button type="button" class="btn btn-primary" id="proceedToBookingBtn" style="width: 100%; padding: 16px; font-size: 1.1rem;">
                     <i class="fas fa-check"></i> Confirm Services
@@ -1182,7 +1243,38 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    
     <script>
+        // --- PWA Service Worker Registration ---
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Service Worker registered', reg))
+                    .catch(err => console.log('Service Worker registration failed', err));
+            });
+        }
+
+        // --- Install Prompt Logic ---
+        let deferredPrompt;
+        const installContainer = document.getElementById('installContainer');
+        
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installContainer.style.display = 'flex';
+        });
+
+        installContainer.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    installContainer.style.display = 'none';
+                }
+                deferredPrompt = null;
+            }
+        });
+
         document.addEventListener('DOMContentLoaded', () => {
             // Firebase Configuration
             const firebaseConfig = {
@@ -1202,7 +1294,7 @@
                 }
             } catch (e) {
                 console.error("Firebase initialization error:", e);
-                alert("Could not initialize the app. Please check the console for errors.");
+                // alert("Could not initialize the app. Please check the console for errors.");
             }
 
             const auth = firebase.auth();
@@ -1213,53 +1305,53 @@
 
             const servicesData = {
                 "Home Needs": [
-                    { name: "Plumbing", icon: "fas fa-wrench" },
-                    { name: "Water Purifier Fitting & Service", value: "Water Purifier Service", icon: "fas fa-filter" },
-                    { name: "Water Tank Cleaning", value: "Water Tank Cleaning", icon: "fas fa-tint" },
-                    { name: "Carpentry", icon: "fas fa-hammer" },
-                    { name: "Painting", icon: "fas fa-paint-roller" }
+                    { name: "Plumbing", icon: "fas fa-wrench", description: "Leak repairs, tap fittings, and pipe maintenance." },
+                    { name: "Water Purifier Fitting & Service", value: "Water Purifier Service", icon: "fas fa-filter", description: "RO installation, filter change, and servicing." },
+                    { name: "Water Tank Cleaning", value: "Water Tank Cleaning", icon: "fas fa-tint", description: "Hygienic cleaning for overhead and underground tanks." },
+                    { name: "Carpentry", icon: "fas fa-hammer", description: "Furniture repair, assembly, and woodworks." },
+                    { name: "Painting", icon: "fas fa-paint-roller", description: "Interior and exterior wall painting services." }
                 ],
                 "Electricals": [
-                    { name: "Electrical", icon: "fas fa-bolt" },
-                    { name: "AC Fitting & Service", icon: "fas fa-snowflake" },
-                    { name: "Chimney Fitting & Service", icon: "fas fa-smog" },
-                    { name: "Fan Fitting & Service", icon: "fas fa-fan" },
-                    { name: "Switch Board Repair", value: "Switch Board Repair", icon: "fas fa-lightbulb" },
-                    { name: "Fridge Service", value: "Refrigerator Repair", icon: "fas fa-temperature-low" },
-                    { name: "Washing Machine Service", value: "Washing Machine Repair", icon: "fas fa-temperature-low" }
-                ], 
+                    { name: "Electrical", icon: "fas fa-bolt", description: "Wiring, fuse repair, and general electrical works." },
+                    { name: "AC Fitting & Service", icon: "fas fa-snowflake", description: "AC installation, cooling issues, and gas filling." },
+                    { name: "Chimney Fitting & Service", icon: "fas fa-smog", description: "Kitchen chimney installation and cleaning." },
+                    { name: "Fan Fitting & Service", icon: "fas fa-fan", description: "Ceiling and wall fan installation and repair." },
+                    { name: "Switch Board Repair", value: "Switch Board Repair", icon: "fas fa-lightbulb", description: "Fixing faulty switches and sockets." },
+                    { name: "Fridge Service", value: "Refrigerator Repair", icon: "fas fa-temperature-low", description: "Repairing cooling issues and compressor faults." },
+                    { name: "Washing Machine Service", value: "Washing Machine Repair", icon: "fas fa-temperature-low", description: "Front/top load washing machine repairs." }
+                ],
                 "Electronics": [
-                    { name: "Computer Service", value: "Computer/Laptop Repair", icon: "fas fa-laptop-code" },
-                    { name: "Phone Service", value: "Mobile Phone Repair", icon: "fas fa-mobile-alt" },
-                    { name: "CCTV Installation & Service", value: "CCTV Installation", icon: "fas fa-video" },
-                    { name: "TV Servive", icon: "fas fa-tv" },
-                    { name: "DTH", value: "DTH Installation/Repair", icon: "fas fa-satellite-dish" }
+                    { name: "Computer Service", value: "Computer/Laptop Repair", icon: "fas fa-laptop-code", description: "Hardware and software solutions for desktops/laptops." },
+                    { name: "Phone Service", value: "Mobile Phone Repair", icon: "fas fa-mobile-alt", description: "Screen replacement, battery issues, and repairs." },
+                    { name: "CCTV Installation & Service", value: "CCTV Installation", icon: "fas fa-video", description: "Security camera setup and maintenance." },
+                    { name: "TV Servive", icon: "fas fa-tv", description: "LED/LCD TV repair and installation." },
+                    { name: "DTH", value: "DTH Installation/Repair", icon: "fas fa-satellite-dish", description: "Dish alignment and set-top box configuration." }
                 ],
                 "Tax Services": [
-                    { name: "Income Tax Filing", icon: "fas fa-file-invoice-dollar" },
-                    { name: "GST Registration & Filing", value: "GST Services", icon: "fas fa-briefcase" },
-                    { name: "TDS Filing", icon: "fas fa-percentage" },
-                    { name: "Accounting Services", icon: "fas fa-calculator" }
+                    { name: "Income Tax Filing", icon: "fas fa-file-invoice-dollar", description: "Professional ITR filing assistance." },
+                    { name: "GST Registration & Filing", value: "GST Services", icon: "fas fa-briefcase", description: "Complete GST registration and monthly filing." },
+                    { name: "TDS Filing", icon: "fas fa-percentage", description: "Accurate TDS return filing services." },
+                    { name: "Accounting Services", icon: "fas fa-calculator", description: "Bookkeeping and financial accounting support." }
                 ],
                 "Loan Services": [
-                    { name: "Home Loan", icon: "fas fa-home" },
-                    { name: "Personal Loan", icon: "fas fa-hand-holding-usd" },
-                    { name: "Vehicle Loan", icon: "fas fa-car" },
-                    { name: "Business Loan", icon: "fas fa-briefcase" },
-                    { name: "Mortgage Loan", icon: "fas fa-building" }
+                    { name: "Home Loan", icon: "fas fa-home", description: "Assistance with new home loans and transfers." },
+                    { name: "Personal Loan", icon: "fas fa-hand-holding-usd", description: "Quick processing for personal financial needs." },
+                    { name: "Vehicle Loan", icon: "fas fa-car", description: "Loans for new and used cars or bikes." },
+                    { name: "Business Loan", icon: "fas fa-briefcase", description: "Capital support for business growth." },
+                    { name: "Mortgage Loan", icon: "fas fa-building", description: "Loan against property services." }
                 ],
                 "Recharge Services": [
-                    { name: "Mobile Recharge", icon: "fas fa-mobile-alt" },
-                    { name: "DTH Recharge", icon: "fas fa-satellite-dish" },
-                    { name: "Fastag Recharge", icon: "fas fa-car" },
-                    { name: "Electricity Bill", icon: "fas fa-bolt" }
+                    { name: "Mobile Recharge", icon: "fas fa-mobile-alt", description: "Instant prepaid recharge for all networks." },
+                    { name: "DTH Recharge", icon: "fas fa-satellite-dish", description: "Quick top-up for your TV subscription." },
+                    { name: "Fastag Recharge", icon: "fas fa-car", description: "Hassle-free Fastag recharge for travel." },
+                    { name: "Electricity Bill", icon: "fas fa-bolt", description: "Secure payment for electricity bills." }
                 ],
                 "Others": [
-                      { name: "Solar", icon: "fas fa-sun" },
-                      { name: "Car Driver", value: "Car Driver", icon: "fas fa-car" },
-                      { name: "Two Wheeler Service", value: "Two Wheeler Service", icon: "fas fa-motorcycle" },
-                      { name: "Other", value: "Other Services", icon: "fas fa-ellipsis-h" },
-                      { name: "Meditation & Yoga", value: "Meditation & Yoga", icon: "fas fa-spa" }
+                      { name: "Solar", icon: "fas fa-sun", description: "Solar panel installation and maintenance." },
+                      { name: "Car Driver", value: "Car Driver", icon: "fas fa-car", description: "Reliable drivers for temporary or permanent hire." },
+                      { name: "Two Wheeler Service", value: "Two Wheeler Service", icon: "fas fa-motorcycle", description: "Bike servicing and repair at your doorstep." },
+                      { name: "Other", value: "Other Services", icon: "fas fa-ellipsis-h", description: "Any other custom service requirement." },
+                      { name: "Meditation & Yoga", value: "Meditation & Yoga", icon: "fas fa-spa", description: "Personalized yoga and meditation sessions." }
                 ]
             };
 
@@ -1367,6 +1459,12 @@
                 }
             };
 
+            // Event handler defined early to avoid ReferenceError
+            const handleStartBooking = () => {
+                dom.homeContainer.style.display = 'none';
+                dom.loginContainer.style.display = 'block';
+            };
+
             const handleAuthStateChange = (user) => {
                 if (user) {
                     userId = user.uid;
@@ -1426,6 +1524,43 @@
                     dom.serviceSelectionGrid.appendChild(categoryDiv);
                 }
                 document.querySelectorAll('.service-item').forEach(item => item.addEventListener('click', handleServiceSelection));
+            };
+
+            // --- ADDED FUNCTION: Render Random Services on Homepage ---
+            const renderHomeServices = () => {
+                const grid = document.querySelector('.features-grid');
+                if(!grid) return;
+                grid.innerHTML = '';
+                
+                // 1. Flatten all services into a single array
+                let allServices = [];
+                for (const category in servicesData) {
+                    allServices = allServices.concat(servicesData[category]);
+                }
+
+                // 2. Shuffle the array using Fisher-Yates shuffle
+                for (let i = allServices.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [allServices[i], allServices[j]] = [allServices[j], allServices[i]];
+                }
+
+                // 3. Select top 4
+                const randomServices = allServices.slice(0, 4);
+                
+                // 4. Render
+                randomServices.forEach(service => {
+                     const item = document.createElement('div');
+                     item.className = 'feature-item';
+                     item.style.cursor = 'pointer';
+                     item.onclick = handleStartBooking; 
+                     
+                     item.innerHTML = `
+                        <i class="${service.icon}"></i>
+                        <h3>${service.name}</h3>
+                        <p>${service.description || 'Expert service at your doorstep.'}</p>
+                     `;
+                     grid.appendChild(item);
+                });
             };
 
             const updateCartDisplay = (cartContainer = dom.selectedServicesCart) => {
@@ -1627,7 +1762,10 @@
                 dom.serviceForm.style.display = 'none';
                 dom.bookingSuccessMessage.style.display = 'block';
                 
-                const locationLink = (formData.lat && formData.lng) ? `https://www.google.com/maps?q=${formData.lat},${formData.lng}` : 'Location not specified.';
+                const locationLink = (formData.lat && formData.lng) 
+                    ? `https://www.google.com/maps/search/?api=1&query=${formData.lat},${formData.lng}` 
+                    : 'Location not specified.';
+                    
                 const message = `*New Service Request*\n\n*Services*: ${formData.services}\n*Name*: ${formData.name}\n*Phone*: ${formData.phone}\n*Date*: ${new Date(formData.date).toLocaleDateString('en-IN')}\n*Time*: ${formData.time}\n*Address*: ${formData.address}, ${formData.pincode}\n*Location*: ${locationLink}\n*Details*: ${formData.details}\n\n*Srinu Home Services*\n*T&C accepted*`;
                 
                 const encoded = encodeURIComponent(message.trim());
@@ -1671,7 +1809,9 @@
                 }
 
                 dom.bookingsList.innerHTML = userHistory.map(b => {
-                    const locLink = (b.lat && b.lng) ? `<a href="https://www.google.com/maps?q=${b.lat},${b.lng}" target="_blank" style="text-decoration: none; color: var(--primary-color);">View on Map</a>` : 'N/A';
+                    const locLink = (b.lat && b.lng) 
+                        ? `<a href="https://www.google.com/maps/search/?api=1&query=${b.lat},${b.lng}" target="_blank" style="text-decoration: none; color: var(--primary-color);">View on Map</a>` 
+                        : 'N/A';
                     const syncClass = b.synced ? 'sync-synced' : 'sync-pending';
                     const syncText = b.synced ? 'Synced' : 'Pending';
 
@@ -1792,16 +1932,12 @@
             // --- INITIALIZATION ---
             auth.onAuthStateChanged(handleAuthStateChange);
             renderServiceGrid();
+            renderHomeServices(); // Call this new function
             updateCartDisplay();
             
             dom.modalDateInput.setAttribute('min', new Date().toISOString().split('T')[0]);
 
             // Event Listeners
-            const handleStartBooking = () => {
-                dom.homeContainer.style.display = 'none';
-                dom.loginContainer.style.display = 'block';
-            };
-
             dom.getStartedBtn.addEventListener('click', handleStartBooking);
             if (dom.showMoreServicesBtn) dom.showMoreServicesBtn.addEventListener('click', handleStartBooking);
 
