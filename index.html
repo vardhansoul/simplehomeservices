@@ -110,6 +110,66 @@
             margin: 0 auto 2rem;
         }
 
+        /* Updated Button Container for Home */
+        .hero-btn-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap; /* Stacks buttons on very small screens */
+            margin-top: 1.5rem;
+            width: 100%;
+        }
+
+        .btn-get-started {
+            padding: clamp(14px, 3vw, 16px) clamp(24px, 5vw, 30px);
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-width: 160px;
+            flex: 1;
+            max-width: 300px;
+        }
+
+        .btn-get-started:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        /* New Call Button Style */
+        .btn-call {
+            padding: clamp(14px, 3vw, 16px) clamp(24px, 5vw, 30px);
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            background-color: white;
+            color: var(--text-color);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            min-width: 160px;
+            flex: 1;
+            max-width: 300px;
+        }
+
+        .btn-call:hover {
+            border-color: var(--success-color);
+            color: var(--success-color);
+            background-color: #f0fdf4;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+        }
+
         .home-features {
             width: 100%;
             margin-bottom: 2.5rem;
@@ -144,23 +204,43 @@
             margin-bottom: 1rem;
         }
 
-        .btn-get-started {
-            padding: clamp(14px, 3vw, 16px) clamp(24px, 5vw, 30px);
-            font-size: clamp(1rem, 2.5vw, 1.1rem);
-            background: var(--primary-gradient);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            margin-top: 0.75rem;
-            width: 100%; max-width: 300px; /* Better mobile width */
+        /* Home Footer Styles */
+        .home-footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
         }
 
-        .btn-get-started:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .footer-separator {
+            color: var(--border-color);
+        }
+
+        .copyright-text {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin: 0;
         }
 
         /* Login Page */
@@ -320,7 +400,7 @@
              color: var(--text-color);
              font-size: 0.95rem;
          }
-         
+          
         input, select, textarea {
              width: 100%;
              padding: 14px 16px; /* Larger tap target */
@@ -791,7 +871,16 @@
                     <h1>Srinu Home Services</h1>
                 </div>
                 <p>Your one-stop solution for all home repair and maintenance needs in Kadapa.</p>
-                <button id="getStartedBtn" class="btn-get-started">Book Service</button>
+                
+                <!-- Updated Buttons Container -->
+                <div class="hero-btn-container">
+                    <button id="getStartedBtn" class="btn-get-started">
+                        Book Service
+                    </button>
+                    <a href="tel:+919490885950" class="btn-call">
+                        <i class="fas fa-phone-alt"></i> Call Now
+                    </a>
+                </div>
             </div>
             <div class="home-features">
                 <h2>Our Popular Services</h2>
@@ -860,6 +949,16 @@
                 <div style="margin-top: 2rem;">
                     <button id="showMoreServicesBtn" class="btn" style="background: transparent; border: 2px solid var(--primary-color); color: var(--primary-color);">Show More Services</button>
                 </div>
+            </div>
+            
+            <!-- Added Footer -->
+            <div class="home-footer">
+                <div class="footer-links">
+                    <a href="tc.html" id="termsBtn">Terms & Conditions</a>
+                    <span class="footer-separator">•</span>
+                    <a href="complaint.html">Complaint / Support</a>
+                </div>
+                <p class="copyright-text">Registered @ 2024 Srinu Home Services</p>
             </div>
         </div>
 
@@ -1156,11 +1255,11 @@
                     { name: "Electricity Bill", icon: "fas fa-bolt" }
                 ],
                 "Others": [
-                     { name: "Solar", icon: "fas fa-sun" },
-                     { name: "Car Driver", value: "Car Driver", icon: "fas fa-car" },
-                     { name: "Two Wheeler Service", value: "Two Wheeler Service", icon: "fas fa-motorcycle" },
-                     { name: "Other", value: "Other Services", icon: "fas fa-ellipsis-h" },
-                     { name: "Meditation & Yoga", value: "Meditation & Yoga", icon: "fas fa-spa" }
+                      { name: "Solar", icon: "fas fa-sun" },
+                      { name: "Car Driver", value: "Car Driver", icon: "fas fa-car" },
+                      { name: "Two Wheeler Service", value: "Two Wheeler Service", icon: "fas fa-motorcycle" },
+                      { name: "Other", value: "Other Services", icon: "fas fa-ellipsis-h" },
+                      { name: "Meditation & Yoga", value: "Meditation & Yoga", icon: "fas fa-spa" }
                 ]
             };
 
@@ -1546,8 +1645,8 @@
                  saveToLocalStorage('serviceCart', []);
                  updateCartDisplay();
                  document.querySelectorAll('.error-message, .invalid').forEach(el => {
-                     el.style.display = 'none';
-                     el.classList.remove('invalid');
+                      el.style.display = 'none';
+                      el.classList.remove('invalid');
                  });
             };
 
@@ -1567,8 +1666,8 @@
                 const userHistory = userId ? history.filter(b => b.userId === userId || !b.userId) : history.filter(b => !b.userId);
                 
                 if(userHistory.length === 0) {
-                     dom.bookingsList.innerHTML = '<p class="cart-empty">No bookings found. Create one from the "New Booking" tab!</p>';
-                     return;
+                      dom.bookingsList.innerHTML = '<p class="cart-empty">No bookings found. Create one from the "New Booking" tab!</p>';
+                      return;
                 }
 
                 dom.bookingsList.innerHTML = userHistory.map(b => {
