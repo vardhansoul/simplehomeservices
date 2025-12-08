@@ -1,0 +1,1904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6c63ff">
+    
+    <title>Srinu Home Services | Expert Plumbing, Electrical & AC Repair in Kadapa</title>
+    
+    <!-- External Assets -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+    <style>
+        :root {
+            --primary-color: #6c63ff;
+            --primary-gradient: linear-gradient(135deg, #7b73ff, #6c63ff);
+            --primary-hover: #5a52e0;
+            --secondary-color: #00c090;
+            --secondary-hover: #00a87a;
+            --background-color: #f4f6f9;
+            --card-background: #ffffff;
+            --text-color: #1e293b;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+            --shadow-color: rgba(99, 102, 241, 0.1);
+            --input-focus-shadow: rgba(108, 99, 255, 0.25);
+            --danger-color: #ef4444;
+            --danger-hover: #dc2626;
+            --font-family: 'Poppins', sans-serif;
+            --success-color: #22c55e;
+            --warning-color: #f97316;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { height: 100%; overflow-x: hidden; }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Changed for mobile-first scrolling */
+            padding: 15px;
+            font-size: 16px;
+        }
+
+        .main-wrapper {
+            width: 100%;
+            min-height: 100vh;
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            background: var(--card-background);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px var(--shadow-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 2rem;
+        }
+
+        /* --- Install PWA Banner --- */
+        #installContainer {
+            display: none;
+            background: var(--primary-gradient);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+
+        /* Responsive Typography */
+        h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 700; }
+        h2 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 600; }
+        h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); font-weight: 600; }
+        h4 { font-size: clamp(1rem, 2.5vw, 1.2rem); font-weight: 600; }
+        p, label, .user-name, .user-email, .form-button-text { font-size: clamp(0.9rem, 2vw, 1rem); }
+        .btn, input, select, textarea { font-size: clamp(0.9rem, 2vw, 1rem); }
+        .error-message, .booking-detail, .cart-item span { font-size: clamp(0.8rem, 1.8vw, 0.9rem); }
+        
+        /* --- HOMEPAGE STYLES --- */
+        #homeContainer {
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+            margin-top: auto; margin-bottom: auto; /* Center vertically if space allows */
+        }
+
+        .home-hero {
+            margin-bottom: 2.5rem;
+            width: 100%;
+        }
+
+        .logo-title-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .logo-title-container img {
+            width: clamp(60px, 15vw, 80px);
+            height: clamp(60px, 15vw, 80px);
+            border-radius: 16px;
+            object-fit: contain;
+        }
+
+        .logo-title-container h1 {
+            margin: 0;
+            text-align: left;
+            color: var(--primary-color);
+        }
+
+        .home-hero p {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Updated Button Container for Home */
+        .hero-btn-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap; /* Stacks buttons on very small screens */
+            margin-top: 1.5rem;
+            width: 100%;
+        }
+
+        .btn-get-started {
+            padding: clamp(14px, 3vw, 16px) clamp(24px, 5vw, 30px);
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-width: 160px;
+            flex: 1;
+            max-width: 300px;
+        }
+
+        .btn-get-started:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        /* New Call Button Style */
+        .btn-call {
+            padding: clamp(14px, 3vw, 16px) clamp(24px, 5vw, 30px);
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            background-color: white;
+            color: var(--text-color);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            min-width: 160px;
+            flex: 1;
+            max-width: 300px;
+        }
+
+        .btn-call:hover {
+            border-color: var(--success-color);
+            color: var(--success-color);
+            background-color: #f0fdf4;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+        }
+
+        .home-features {
+            width: 100%;
+            margin-bottom: 2.5rem;
+        }
+
+        .home-features h2 {
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjusted width to fit content better */
+            gap: 1.2rem;
+        }
+
+        .feature-item {
+            background: var(--background-color);
+            padding: 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .feature-item i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+        }
+        
+        .feature-item h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-item p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /* Home Footer Styles */
+        .home-footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .footer-separator {
+            color: var(--border-color);
+        }
+
+        .copyright-text {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin: 0;
+        }
+
+        /* Login Page */
+        #loginContainer {
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            display: none;
+            margin-top: auto; margin-bottom: auto;
+        }
+
+        .login-logo-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .login-logo-title img {
+            width: clamp(50px, 12vw, 70px);
+            height: clamp(50px, 12vw, 70px);
+            border-radius: 12px;
+            object-fit: contain;
+        }
+
+        .login-logo-title h1 {
+            margin: 0;
+            text-align: left;
+            color: var(--primary-color);
+        }
+
+        #loginContainer p { color: var(--text-light); margin-bottom: 1.5rem; max-width: 400px; margin-left: auto; margin-right: auto; }
+
+        /* App Content */
+        #app-content { display: none; flex-direction: column; height: 100%; width: 100%; }
+
+        #app-header {
+            padding: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            flex-shrink: 0;
+            border-radius: 20px; /* Match container on desktop */
+        }
+
+        .user-avatar {
+             width: clamp(35px, 8vw, 45px);
+             height: clamp(35px, 8vw, 45px);
+             border-radius: 50%;
+             object-fit: cover;
+             border: 3px solid var(--primary-color);
+         }
+
+        .user-name { font-weight: 600; }
+        .user-email { font-size: clamp(0.7rem, 1.5vw, 0.8rem); color: var(--text-light); }
+
+        /* User Menu */
+        #userMenuContainer { display: none; position: relative; }
+        .user-menu-trigger { background: none; border: none; padding: 0; cursor: pointer; border-radius: 50%; }
+        .user-menu-trigger .user-avatar { transition: box-shadow 0.2s ease; }
+        .user-menu-trigger:hover .user-avatar { box-shadow: 0 0 0 4px var(--input-focus-shadow); }
+
+        .user-menu-popup {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            width: clamp(240px, 40vw, 280px);
+            background: var(--card-background);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            z-index: 1100;
+            opacity: 0;
+            transform: translateY(10px) scale(0.95);
+            pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .user-menu-popup.show { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+        .user-info-popup { display: flex; align-items: center; gap: 0.8rem; }
+        .user-info-popup .user-avatar { flex-shrink: 0; }
+        .user-details-popup { overflow: hidden; }
+        .user-details-popup .user-name, .user-details-popup .user-email { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .popup-divider { border: none; border-top: 1px solid var(--border-color); margin: 0.8rem 0; }
+
+        .btn-menu-item {
+            width: 100%;
+            background: transparent;
+            color: var(--text-color);
+            font-weight: 500;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 0.8rem;
+            padding: 0.8rem;
+            transition: all 0.2s ease;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+        }
+        .btn-menu-item:hover { background-color: var(--background-color); color: var(--primary-color); }
+        .btn-menu-item i { width: 20px; text-align: center; }
+
+        .btn-logout-popup {
+            width: 100%;
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger-color);
+            font-weight: 600;
+            border: 1px solid transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.8rem;
+            transition: all 0.2s ease;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            border-radius: 8px;
+            margin-top: 0.5rem;
+            cursor: pointer;
+        }
+        .btn-logout-popup:hover { background: rgba(239, 68, 68, 0.2); }
+
+        /* Buttons */
+        .btn {
+            padding: clamp(12px, 2.5vw, 14px) clamp(16px, 3vw, 20px);
+             border: none;
+             border-radius: 12px;
+             font-weight: 600;
+             cursor: pointer;
+             transition: all 0.3s ease;
+             display: inline-flex;
+             align-items: center;
+             justify-content: center;
+             gap: 0.5rem;
+             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+             text-decoration: none; /* For link buttons */
+        }
+
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+        .btn:disabled { background: #ccc; cursor: not-allowed; transform: none; box-shadow: none; }
+        .btn-primary { background: var(--primary-gradient); color: #fff; }
+        .btn-primary:hover:not(:disabled) { background: var(--primary-hover); }
+        .btn-secondary { background-color: var(--secondary-color); color: #fff; }
+        .btn-secondary:hover:not(:disabled) { background-color: var(--secondary-hover); }
+
+        .btn-google {
+             background-color: var(--card-background);
+             color: var(--text-color);
+             border: 1px solid var(--border-color);
+             font-weight: 500;
+             padding: clamp(12px, 3vw, 14px) clamp(20px, 4vw, 24px);
+             font-size: clamp(0.9rem, 2vw, 1rem);
+         }
+        .btn-google i { color: #EA4335; font-size: clamp(1.2rem, 3vw, 1.5rem); }
+
+        /* Tab Content */
+        .tab-content-wrapper {
+             flex-grow: 1;
+             background: var(--card-background);
+             padding: clamp(1.5rem, 3vw, 2rem);
+             border-radius: 20px;
+             margin-top: 1rem;
+             overflow-y: visible; /* Changed for better mobile scrolling */
+         }
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Forms & Inputs - Mobile Optimized */
+        form { display: flex; flex-direction: column; gap: 1.2rem; }
+        .form-group { display: flex; flex-direction: column; position: relative; margin-bottom: 0; }
+        
+        label {
+             font-weight: 500;
+             margin-bottom: 0.5rem;
+             color: var(--text-color);
+             font-size: 0.95rem;
+         }
+          
+        input, select, textarea {
+             width: 100%;
+             padding: 14px 16px; /* Larger tap target */
+             border: 1px solid var(--border-color);
+             border-radius: 12px;
+             font-family: inherit;
+             color: var(--text-color);
+             background-color: #f8f9fa;
+             transition: all 0.3s ease;
+             font-size: 16px; /* Prevent iOS zoom */
+        }
+        
+        input:focus, select:focus, textarea:focus {
+             border-color: var(--primary-color);
+             box-shadow: 0 0 0 4px var(--input-focus-shadow);
+             outline: none;
+             background-color: var(--card-background);
+         }
+
+        /* Action Card Buttons */
+        .form-button {
+             text-align: left;
+             cursor: pointer;
+             background-color: #fff;
+             border: 1px solid var(--border-color);
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+             padding: 16px; /* Larger Card feel */
+             border-radius: 16px;
+             box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+             transition: all 0.2s;
+        }
+        .form-button:hover, .form-button:active { 
+            border-color: var(--primary-color); 
+            background-color: #fcfcfc;
+            transform: translateY(-2px);
+        }
+        .form-button-text { color: var(--text-light); font-weight: 500; }
+        .form-button-text.selected { color: var(--text-color); font-weight: 600; }
+        
+        .form-row {
+             display: grid;
+             grid-template-columns: 1fr;
+             gap: 1.2rem;
+        }
+
+        /* Error Messages */
+        .error-message {
+             color: var(--danger-color);
+             margin-top: 0.4rem;
+             display: none;
+             animation: fadeIn 0.3s;
+             font-size: 0.85rem;
+         }
+        input.invalid, select.invalid, .form-button.invalid { border-color: var(--danger-color) !important; }
+
+        /* Input with Icon */
+        .input-with-icon { position: relative; }
+        .input-with-icon .input-icon {
+            position: absolute;
+            right: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            pointer-events: none;
+        }
+
+        /* Map */
+        #mapid {
+             height: 250px;
+             width: 100%;
+             margin-top: 1rem;
+             border-radius: 16px;
+             box-shadow: 0 4px 15px var(--shadow-color);
+             border: 1px solid var(--border-color);
+             z-index: 1;
+         }
+
+        /* Address Details */
+        .address-details {
+             margin-top: 0.8rem;
+             padding: 1rem;
+             border-radius: 12px;
+             background: #f0f7ff;
+             border: 1px solid #dbeafe;
+             color: #1e3a8a;
+        }
+
+        /* Pincode Loader */
+        .pincode-loader {
+            display: none;
+             width: 20px;
+             height: 20px;
+            border: 3px solid var(--border-color);
+             border-top-color: var(--primary-color);
+            border-radius: 50%;
+             animation: spin 1s linear infinite;
+            position: absolute;
+             right: 1.2rem;
+             top: 42px; /* Adjusted for larger input */
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Improved Booking Items */
+        .booking-item {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-left: 5px solid var(--primary-color);
+            border-radius: 16px;
+            padding: 1.2rem;
+            margin-bottom: 1.2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .booking-header {
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+             margin-bottom: 1rem;
+             padding-bottom: 0.8rem;
+             border-bottom: 1px dashed var(--border-color);
+         }
+
+        .booking-services {
+             font-weight: 700;
+             color: var(--text-color);
+             font-size: 1.1rem;
+        }
+
+        .sync-status-badge {
+             padding: 4px 10px;
+             border-radius: 20px;
+             font-size: 0.7rem;
+             font-weight: 700;
+             text-transform: uppercase;
+             letter-spacing: 0.5px;
+         }
+
+        .sync-synced { background-color: var(--success-color); color: white; }
+        .sync-pending { background-color: var(--warning-color); color: white; }
+
+        .booking-details-grid {
+             display: grid;
+             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+             gap: 1rem;
+         }
+
+        .booking-detail {
+             display: flex;
+             align-items: center;
+             gap: 0.8rem;
+             padding: 0.5rem;
+             border-radius: 8px;
+         }
+
+        .booking-detail-icon {
+             width: 32px;
+             height: 32px;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             background-color: rgba(108, 99, 255, 0.1);
+             border-radius: 8px;
+             color: var(--primary-color);
+             font-size: 0.9rem;
+             flex-shrink: 0;
+        }
+        
+        .booking-detail-content { display: flex; flex-direction: column; }
+        .booking-detail-label { font-size: 0.75rem; color: var(--text-light); }
+        .booking-detail-value { font-weight: 500; color: var(--text-color); font-size: 0.9rem; }
+
+        /* Modals - Mobile Bottom Sheet Style */
+        .modal {
+            display: none;
+             position: fixed;
+             z-index: 1000;
+            left: 0;
+             top: 0;
+             width: 100%;
+             height: 100%;
+            background-color: rgba(30, 41, 59, 0.6);
+             backdrop-filter: blur(5px);
+            justify-content: center;
+             align-items: center;
+             padding: 15px;
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        @keyframes modalFadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .modal-content {
+            background-color: var(--card-background);
+             padding: 2rem;
+             border-radius: 20px;
+             width: 100%;
+            max-width: 800px;
+             box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+             position: relative;
+            max-height: 90vh;
+             overflow-y: auto;
+             animation: slideIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        @keyframes slideIn { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        .modal-header {
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+             margin-bottom: 1.5rem;
+         }
+        .modal-header h3 { color: var(--primary-color); font-weight: 700; font-size: 1.3rem; }
+        .close-btn { font-size: 2rem; color: var(--text-light); cursor: pointer; }
+
+        /* Specific fix for Service Modal to have sticky top cart and bottom button - FULL SCREEN */
+        #serviceModal {
+            padding: 0 !important; /* Remove padding from modal container */
+        }
+
+        #serviceModal .modal-content {
+            padding: 0 !important;
+            display: flex;
+            flex-direction: column;
+            height: 100%;       /* Full height */
+            max-height: 100%;   /* Full height */
+            width: 100%;        /* Full width */
+            max-width: 100%;    /* Full width */
+            border-radius: 0;   /* No corners */
+            overflow: hidden;
+            margin: 0;          /* No margins */
+        }
+        
+        #serviceModal .modal-header-fixed {
+            padding: 1.2rem 1.5rem 0.5rem 1.5rem;
+            background: var(--card-background);
+            border-bottom: 1px solid var(--border-color);
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            z-index: 5;
+        }
+
+        #serviceModal .modal-scrollable-body {
+            padding: 1.5rem;
+            overflow-y: auto;
+            flex-grow: 1;
+            -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+        }
+
+        #serviceModal .modal-footer-fixed {
+            padding: 1rem 1.5rem;
+            background: var(--card-background);
+            border-top: 1px solid var(--border-color);
+            flex-shrink: 0;
+            z-index: 10;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+        }
+        
+        /* Services Grid */
+        .services-category { margin-bottom: 1.5rem; }
+        .services-category h4 {
+             color: var(--primary-color);
+             margin-bottom: 0.8rem;
+             border-bottom: 2px solid var(--border-color);
+             padding-bottom: 0.3rem;
+         }
+        .services-grid {
+             display: grid;
+             grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+             gap: 0.8rem;
+         }
+        .service-item {
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+             justify-content: center;
+             padding: 12px;
+             border: 2px solid var(--border-color);
+             border-radius: 16px;
+             background-color: #fff;
+             cursor: pointer;
+             transition: all 0.2s ease;
+             font-size: 0.8rem;
+             color: var(--text-color);
+             text-align: center;
+             height: 100%;
+         }
+        .service-item:active { transform: scale(0.95); }
+        .service-item i { font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--primary-color); }
+        .service-item.active {
+             border-color: var(--primary-color);
+             background-color: rgba(108, 99, 255, 0.05);
+             box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2);
+         }
+
+        /* Cart */
+        .cart-panel {
+             margin-top: 1.5rem;
+             padding: 1.5rem;
+             border: 1px dashed var(--primary-color);
+             border-radius: 12px;
+             background: #f8f0ff;
+         }
+        .cart-item {
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+             padding: 8px 12px;
+             background: white;
+             border-radius: 8px;
+             margin-bottom: 0.5rem;
+             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+             font-size: 0.9rem;
+         }
+        .remove-btn {
+             background: var(--danger-color);
+             color: white;
+             border: none;
+             width: 24px; height: 24px;
+             border-radius: 50%;
+             font-size: 0.9rem;
+             cursor: pointer;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             margin-left: 10px;
+         }
+        .cart-footer { display: flex; justify-content: flex-end; margin-top: 1rem; }
+
+        /* Booking Success */
+        .booking-success-container {
+             text-align: center;
+             padding: 2rem;
+             background: var(--background-color);
+             border-radius: 16px;
+             margin-top: 1.5rem;
+             border: 1px solid var(--border-color);
+         }
+        .booking-success-container .fa-check-circle { font-size: 3.5rem; color: var(--success-color); margin-bottom: 1rem; }
+        .booking-success-container h3 { margin-bottom: 0.5rem; }
+
+        /* --- MOBILE FIRST OVERRIDES --- */
+        @media (max-width: 480px) {
+            body { 
+                padding: 0; 
+                background-color: #fff; /* App-like background */
+                align-items: flex-start;
+            }
+            
+            .main-wrapper { 
+                max-width: 100%; 
+                min-height: 100vh;
+            }
+
+            .container {
+                border-radius: 0;
+                box-shadow: none;
+                padding: 1.2rem;
+                min-height: auto;
+            }
+            
+            #app-header {
+                position: sticky;
+                top: 0;
+                z-index: 100;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                border-bottom: 1px solid var(--border-color);
+                border-radius: 0;
+                padding: 1rem 1.2rem;
+            }
+
+            .tab-content-wrapper {
+                margin-top: 0;
+                border-radius: 0;
+                padding: 1.2rem;
+                padding-bottom: 100px; /* Space for FAB */
+                box-shadow: none;
+                min-height: calc(100vh - 70px);
+            }
+
+            /* Bottom Sheet Modals on Mobile */
+            .modal {
+                align-items: flex-end; /* Align to bottom */
+                padding: 0;
+            }
+            
+            /* Standard Modal Override for Mobile */
+            .modal-content {
+                border-radius: 24px 24px 0 0; /* Rounded top only */
+                max-height: 85vh;
+                width: 100%;
+                padding: 1.5rem;
+                margin: 0;
+                animation: slideUp 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            }
+            
+            /* Specific Full Screen Override for Service Modal Mobile */
+            #serviceModal .modal-content {
+                border-radius: 0;
+                height: 100%;
+                max-height: 100%;
+            }
+            
+            @keyframes slideUp { 
+                from { transform: translateY(100%); } 
+                to { transform: translateY(0); } 
+            }
+            
+            /* Tweak Inputs for Mobile */
+            .form-row { grid-template-columns: 1fr; gap: 1rem; }
+            
+            .form-button {
+                padding: 18px; /* Even larger touch target */
+            }
+            
+            .booking-item {
+                margin: 0 0 1rem 0;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+                border: none;
+                background: #f8f9fa; /* Slightly off-white for contrast */
+            }
+            
+            /* Hide non-critical elements or simplify */
+            .home-hero { margin-bottom: 1.5rem; }
+        }
+
+        /* --- FLOATING ACTION BUTTON (FAB) --- */
+        #floatingActionButton {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 950;
+            display: none;
+            width: 56px;
+            height: 56px;
+            padding: 0;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.4);
+            animation: fadeIn 0.3s;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.4rem;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        #floatingActionButton:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(108,99,255,0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="main-wrapper">
+        
+        <!-- PWA Install Prompt (Visible only when installable) -->
+        <div id="installContainer">
+            <div style="display:flex; align-items:center; gap:10px;">
+                <i class="fas fa-download"></i>
+                <span>Install App for easier booking</span>
+            </div>
+            <button style="background:white; color:var(--primary-color); border:none; padding:5px 12px; border-radius:15px; font-weight:bold;">Install</button>
+        </div>
+
+        <!-- HOMEPAGE -->
+        <div id="homeContainer" class="container">
+            <div class="home-hero">
+                <div class="logo-title-container">
+                    <img src="logo.png" onerror="this.src='https://ui-avatars.com/api/?name=SH&background=6c63ff&color=fff&size=128'" alt="Srinu Home Services Logo">
+                    <h1>Srinu Home Services</h1>
+                </div>
+                <p>Your one-stop solution for all home repair and maintenance needs in Kadapa.</p>
+                
+                <div class="hero-btn-container">
+                    <button id="getStartedBtn" class="btn-get-started">
+                        Book Service
+                    </button>
+                    <a href="tel:+919490885950" class="btn-call">
+                        <i class="fas fa-phone-alt"></i> Call Now
+                    </a>
+                </div>
+            </div>
+            <div class="home-features">
+                <h2>Our Popular Services</h2>
+                <div class="features-grid">
+                    <!-- Services will be dynamically injected here by JS -->
+                </div>
+                <div style="margin-top: 2rem;">
+                    <button id="showMoreServicesBtn" class="btn" style="background: transparent; border: 2px solid var(--primary-color); color: var(--primary-color);">Show More Services</button>
+                </div>
+            </div>
+            
+            <div class="home-footer">
+                <div class="footer-links">
+                    <a href="#" onclick="alert('Terms and Conditions would appear here.')">Terms & Conditions</a>
+                    <span class="footer-separator">•</span>
+                    <a href="#" onclick="alert('Support form would appear here.')">Complaint / Support</a>
+                </div>
+                <p class="copyright-text">Registered @ 2024 Srinu Home Services</p>
+            </div>
+        </div>
+
+        <!-- LOGIN PAGE (Replaced with Phone Login) -->
+        <div id="loginContainer" class="container">
+            <div class="login-logo-title">
+                <img src="logo.png" onerror="this.src='https://ui-avatars.com/api/?name=SH&background=6c63ff&color=fff&size=128'" alt="Srinu Home Services Logo">
+                <h1>Srinu Home Services</h1>
+            </div>
+            <h3 style="margin-bottom: 0.5rem; font-size: 1.2rem;">Welcome Back!</h3>
+            <p style="margin-bottom: 1.5rem;">Enter your mobile number to view previous bookings and book new services.</p>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <input type="text" id="loginName" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="loginPhone" pattern="[6-9]\d{9}" maxlength="10" placeholder="10-digit Mobile Number" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%; padding: 14px;">Continue</button>
+            </form>
+            <p style="font-size: 0.75rem; margin-top: 15px; color: var(--text-light);">* By continuing, you agree to allow us to sync your bookings using this phone number.</p>
+        </div>
+
+        <!-- MAIN APP CONTENT -->
+        <div id="app-content">
+            <header id="app-header">
+                <div style="flex-grow: 1;">
+                    <h3 style="color: var(--primary-color);">Srinu Home Services</h3>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <a href="tel:+919490885950" class="btn btn-secondary" style="padding: 8px 12px; font-size: 0.9rem; border-radius: 20px;">
+                        <i class="fas fa-phone-alt"></i> <span style="margin-left: 5px;" class="header-call-text">Call</span>
+                    </a>
+                    <div id="userMenuContainer">
+                        <button id="userMenuTrigger" class="user-menu-trigger">
+                            <img id="userAvatarTrigger" class="user-avatar" src="" alt="User Avatar">
+                        </button>
+                        <div id="userMenuPopup" class="user-menu-popup">
+                            <div class="user-info-popup">
+                                <img id="userAvatarPopup" class="user-avatar" src="" alt="User Avatar">
+                                <div class="user-details-popup">
+                                    <p id="userNamePopup" class="user-name"></p>
+                                    <p id="userEmailPopup" class="user-email"></p>
+                                </div>
+                            </div>
+                            <hr class="popup-divider">
+                            <button id="complaintBtnLoggedIn" class="btn-menu-item">
+                                <i class="fas fa-headset" style="color: var(--primary-color);"></i> Complaint / Support
+                            </button>
+                            <button id="logoutBtn" class="btn-logout-popup">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="tab-content-wrapper">
+                <div id="booking-panel" class="tab-panel active">
+                    <form id="serviceForm" novalidate>
+                         <!-- Name and Phone are usually pre-filled from login, but kept editable if user books for someone else -->
+                         <div class="form-row">
+                            <div class="form-group">
+                                <label>Your Name <span style="color: var(--danger-color)">*</span></label>
+                                <input type="text" id="name" name="name" placeholder="e.g., John Doe" required>
+                                <span class="error-message">Name is required.</span>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number <span style="color: var(--danger-color)">*</span></label>
+                                <input type="tel" id="phone" name="phone" pattern="[6-9]\d{9}" maxlength="10" placeholder="10-digit mobile number" required readonly style="background-color: #e2e8f0; cursor: not-allowed;">
+                                <span class="error-message">Please enter a valid 10-digit phone number.</span>
+                            </div>
+                        </div>
+
+                         <div class="form-group">
+                            <label>Services <span style="color: var(--danger-color)">*</span></label>
+                            <div id="selectedServicesCart">
+                                <div class="cart-empty">No services added yet.</div>
+                            </div>
+                            <button type="button" id="selectServiceBtn" class="form-button" style="margin-top: 0.5rem;">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <i class="fas fa-plus-circle" style="color: var(--primary-color); font-size: 1.2rem;"></i>
+                                    <span style="font-weight: 500;">Add Services</span>
+                                </div>
+                                <i class="fas fa-chevron-right" style="color: var(--text-light);"></i>
+                            </button>
+                            <span class="error-message" id="services-error">Please select at least one service.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Date & Location <span style="color: var(--danger-color)">*</span></label>
+                            <input type="hidden" id="date" name="date" required>
+                            <input type="hidden" id="time" name="time" required>
+                            <input type="hidden" id="pincode" name="pincode" required>
+                            <input type="hidden" id="lat" name="lat">
+                            <input type="hidden" id="lng" name="lng">
+                            <input type="hidden" id="doorNo" name="doorNo">
+                            <input type="hidden" id="streetName" name="streetName">
+                            <input type="hidden" id="landmark" name="landmark">
+
+                            <button type="button" id="selectDateTimeLocationBtn" class="form-button">
+                                <div style="display: flex; flex-direction: column; gap: 2px;">
+                                    <span id="selectedDateTimeLocationText" class="form-button-text">Tap to Select Date, Time & Location</span>
+                                </div>
+                                <i class="fas fa-chevron-right" style="color: var(--text-light);"></i>
+                            </button>
+                             <span class="error-message" id="location-error">Date, time, and location are required.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="details">Additional Details (Optional)</label>
+                            <textarea id="details" name="details" rows="3" placeholder="e.g., The tap in the kitchen is leaking."></textarea>
+                        </div>
+
+                        <button type="submit" id="submitBtn" class="btn btn-primary" style="margin-top: 1rem; padding: 16px;"><i class="fas fa-check-circle"></i> Confirm Booking</button>
+                    </form>
+
+                    <div id="bookingSuccessMessage" style="display: none;">
+                        <div class="booking-success-container">
+                            <i class="fas fa-check-circle"></i>
+                            <h3>Share via WhatsApp to confirm!</h3>
+                            <p>Your request has been saved.</p>
+                            <div class="share-buttons">
+                                <button id="whatsapp-btn" class="btn btn-secondary" style="background: #25D366; width: 100%; justify-content: center; padding: 14px;"><i class="fab fa-whatsapp"></i> Send via WhatsApp</button>
+                                <button id="sms-btn" class="btn btn-secondary" style="background: var(--text-color); width: 100%; justify-content: center; padding: 14px;"><i class="fas fa-sms"></i> Send via SMS</button>
+                            </div>
+                             <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid var(--border-color);">
+                            <button id="bookAnotherBtn" class="btn" style="background: transparent; border: 1px solid var(--primary-color); color: var(--primary-color); width: 100%;">Book Another Service</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="history-panel" class="tab-panel">
+                    <h2 style="margin-bottom: 1.5rem; color: var(--primary-color);">My Bookings</h2>
+                    <div id="bookingsList">
+                        <p class="cart-empty">No recent bookings found.</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Service Selection Modal -->
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header-fixed">
+                <div class="modal-header" style="margin-bottom: 0;">
+                    <h3>Select Services</h3>
+                    <span class="close-btn" data-modal="serviceModal">×</span>
+                </div>
+                <div id="modalCartDisplay" style="display: none;"></div> 
+            </div>
+            
+            <div class="modal-scrollable-body">
+                <div id="serviceSelectionGrid">
+                </div>
+            </div>
+
+            <div class="modal-footer-fixed">
+                <button type="button" class="btn btn-primary" id="proceedToBookingBtn" style="width: 100%; padding: 16px; font-size: 1.1rem;">
+                    <i class="fas fa-check"></i> Confirm Services
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Date, Time & Location Modal -->
+    <div id="dateTimeLocationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Select Date & Location</h3>
+                <span class="close-btn" data-modal="dateTimeLocationModal">×</span>
+            </div>
+            <form id="dateTimeLocationForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="modal-date">Date</label>
+                        <div class="input-with-icon">
+                            <input type="date" id="modal-date" name="date" required>
+                            <i class="fas fa-calendar-alt input-icon"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-time">Time Slot</label>
+                        <select id="modal-time" name="time" required>
+                            <option value="">-- Choose --</option>
+                            <option value="Morning (9am - 12pm)">Morning (9am - 12pm)</option>
+                            <option value="Afternoon (12pm - 4pm)">Afternoon (12pm - 4pm)</option>
+                            <option value="Evening (4pm - 8pm)">Evening (4pm - 8pm)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="modal-pincode">Pincode</label>
+                    <input type="tel" id="modal-pincode" name="pincode" pattern="\d{6}" maxlength="6" placeholder="Enter your 6-digit pincode" required>
+                    <div class="pincode-loader"></div>
+                </div>
+
+                <div class="address-details" style="display: none;">
+                    <strong><i class="fas fa-map-marker-alt"></i> Location Area</strong>
+                    <p>District: <span id="modal-district-text"></span>, State: <span id="modal-state-text"></span></p>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="modal-doorNo">Door / Flat No.</label>
+                        <input type="text" id="modal-doorNo" name="doorNo" placeholder="e.g., 10-2-34">
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-streetName">Street / Area Name</label>
+                        <input type="text" id="modal-streetName" name="streetName" placeholder="e.g., Main Street">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="modal-landmark">Landmark</label>
+                    <input type="text" id="modal-landmark" name="landmark" placeholder="e.g., Near City Hospital">
+                </div>
+                
+                <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 10px;">Drag the pin to your exact location</p>
+                <div id="mapid"></div>
+
+                <div class="cart-footer" style="margin-top: 1.5rem;">
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px;">Confirm Location</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Floating Action Button (FAB) -->
+    <button id="floatingActionButton" class="btn btn-primary" data-tooltip="View My Bookings">
+        <i class="fas fa-history"></i>
+    </button>
+    
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js';
+        import { getAuth, signInAnonymously, onAuthStateChanged, signOut, signInWithCustomToken } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js';
+        import { getFirestore, collection, addDoc, query, where, onSnapshot, orderBy, doc, setDoc } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
+
+        // Initialize Firebase
+        const firebaseConfig = JSON.parse(__firebase_config);
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+
+        // --- Auth Logic ---
+        const initAuth = async () => {
+            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                await signInWithCustomToken(auth, __initial_auth_token);
+            } else {
+                await signInAnonymously(auth);
+            }
+        };
+
+        // Initialize Auth silently immediately
+        initAuth();
+
+        // Services Data
+        const servicesData = {
+            "Home Needs": [
+                { name: "Plumbing", icon: "fas fa-wrench", description: "Leak repairs, tap fittings, and pipe maintenance." },
+                { name: "Water Purifier Fitting & Service", value: "Water Purifier Service", icon: "fas fa-filter", description: "RO installation, filter change, and servicing." },
+                { name: "Water Tank Cleaning", value: "Water Tank Cleaning", icon: "fas fa-tint", description: "Hygienic cleaning for overhead and underground tanks." },
+                { name: "Carpentry", icon: "fas fa-hammer", description: "Furniture repair, assembly, and woodworks." },
+                { name: "Painting", icon: "fas fa-paint-roller", description: "Interior and exterior wall painting services." }
+            ],
+            "Electricals": [
+                { name: "Electrical", icon: "fas fa-bolt", description: "Wiring, fuse repair, and general electrical works." },
+                { name: "AC Fitting & Service", icon: "fas fa-snowflake", description: "AC installation, cooling issues, and gas filling." },
+                { name: "Chimney Fitting & Service", icon: "fas fa-smog", description: "Kitchen chimney installation and cleaning." },
+                { name: "Fan Fitting & Service", icon: "fas fa-fan", description: "Ceiling and wall fan installation and repair." },
+                { name: "Switch Board Repair", value: "Switch Board Repair", icon: "fas fa-lightbulb", description: "Fixing faulty switches and sockets." },
+                { name: "Fridge Service", value: "Refrigerator Repair", icon: "fas fa-temperature-low", description: "Repairing cooling issues and compressor faults." },
+                { name: "Washing Machine Service", value: "Washing Machine Repair", icon: "fas fa-temperature-low", description: "Front/top load washing machine repairs." }
+            ],
+            "Electronics": [
+                { name: "Computer Service", value: "Computer/Laptop Repair", icon: "fas fa-laptop-code", description: "Hardware and software solutions for desktops/laptops." },
+                { name: "Phone Service", value: "Mobile Phone Repair", icon: "fas fa-mobile-alt", description: "Screen replacement, battery issues, and repairs." },
+                { name: "CCTV Installation & Service", value: "CCTV Installation", icon: "fas fa-video", description: "Security camera setup and maintenance." },
+                { name: "TV Servive", icon: "fas fa-tv", description: "LED/LCD TV repair and installation." },
+                { name: "DTH", value: "DTH Installation/Repair", icon: "fas fa-satellite-dish", description: "Dish alignment and set-top box configuration." }
+            ],
+            "Tax Services": [
+                { name: "Income Tax Filing", icon: "fas fa-file-invoice-dollar", description: "Professional ITR filing assistance." },
+                { name: "GST Registration & Filing", value: "GST Services", icon: "fas fa-briefcase", description: "Complete GST registration and monthly filing." },
+                { name: "TDS Filing", icon: "fas fa-percentage", description: "Accurate TDS return filing services." },
+                { name: "Accounting Services", icon: "fas fa-calculator", description: "Bookkeeping and financial accounting support." },
+                { name: "PAN Card Service", icon: "fas fa-id-card", description: "New PAN card application and corrections." }
+            ],
+            "Travel Services": [
+                { name: "Train Ticket Booking", icon: "fas fa-train", description: "Confirmed train ticket booking for all routes." },
+                { name: "Bus Ticket Booking", icon: "fas fa-bus", description: "AC and Non-AC bus ticket reservation." }
+            ],
+            "Loan Services": [
+                { name: "Home Loan", icon: "fas fa-home", description: "Assistance with new home loans and transfers." },
+                { name: "Personal Loan", icon: "fas fa-hand-holding-usd", description: "Quick processing for personal financial needs." },
+                { name: "Vehicle Loan", icon: "fas fa-car", description: "Loans for new and used cars or bikes." },
+                { name: "Business Loan", icon: "fas fa-briefcase", description: "Capital support for business growth." },
+                { name: "Mortgage Loan", icon: "fas fa-building", description: "Loan against property services." }
+            ],
+            "Recharge Services": [
+                { name: "Mobile Recharge", icon: "fas fa-mobile-alt", description: "Instant prepaid recharge for all networks." },
+                { name: "DTH Recharge", icon: "fas fa-satellite-dish", description: "Quick top-up for your TV subscription." },
+                { name: "Fastag Recharge", icon: "fas fa-car", description: "Hassle-free Fastag recharge for travel." },
+                { name: "Electricity Bill", icon: "fas fa-bolt", description: "Secure payment for electricity bills." }
+            ],
+            "Others": [
+                  { name: "Solar", icon: "fas fa-sun", description: "Solar panel installation and maintenance." },
+                  { name: "Car Driver", value: "Car Driver", icon: "fas fa-car", description: "Reliable drivers for temporary or permanent hire." },
+                  { name: "Two Wheeler Service", value: "Two Wheeler Service", icon: "fas fa-motorcycle", description: "Bike servicing and repair at your doorstep." },
+                  { name: "Other", value: "Other Services", icon: "fas fa-ellipsis-h", description: "Any other custom service requirement." },
+                  { name: "Meditation & Yoga", value: "Meditation & Yoga", icon: "fas fa-spa", description: "Personalized yoga and meditation sessions." }
+            ]
+        };
+
+        const dom = {
+            homeContainer: document.getElementById('homeContainer'),
+            getStartedBtn: document.getElementById('getStartedBtn'),
+            loginContainer: document.getElementById('loginContainer'),
+            loginForm: document.getElementById('loginForm'),
+            loginName: document.getElementById('loginName'),
+            loginPhone: document.getElementById('loginPhone'),
+            appContent: document.getElementById('app-content'),
+            logoutBtn: document.getElementById('logoutBtn'),
+            userMenuContainer: document.getElementById('userMenuContainer'),
+            userMenuTrigger: document.getElementById('userMenuTrigger'),
+            userMenuPopup: document.getElementById('userMenuPopup'),
+            userAvatarTrigger: document.getElementById('userAvatarTrigger'),
+            userAvatarPopup: document.getElementById('userAvatarPopup'),
+            userNamePopup: document.getElementById('userNamePopup'),
+            userEmailPopup: document.getElementById('userEmailPopup'),
+            serviceForm: document.getElementById('serviceForm'),
+            bookingSuccessMessage: document.getElementById('bookingSuccessMessage'),
+            whatsappBtn: document.getElementById('whatsapp-btn'),
+            smsBtn: document.getElementById('sms-btn'),
+            bookAnotherBtn: document.getElementById('bookAnotherBtn'),
+            nameInput: document.getElementById('name'),
+            phoneInput: document.getElementById('phone'),
+            detailsInput: document.getElementById('details'),
+            dateInput: document.getElementById('date'),
+            timeInput: document.getElementById('time'),
+            pincodeInput: document.getElementById('pincode'),
+            latInput: document.getElementById('lat'),
+            lngInput: document.getElementById('lng'),
+            doorNoInput: document.getElementById('doorNo'),
+            streetNameInput: document.getElementById('streetName'),
+            landmarkInput: document.getElementById('landmark'),
+            selectServiceBtn: document.getElementById('selectServiceBtn'),
+            selectDateTimeLocationBtn: document.getElementById('selectDateTimeLocationBtn'),
+            selectedDateTimeLocationText: document.getElementById('selectedDateTimeLocationText'),
+            bookingsList: document.getElementById('bookingsList'),
+            selectedServicesCart: document.getElementById('selectedServicesCart'),
+            proceedToBookingBtn: document.getElementById('proceedToBookingBtn'),
+            modalCartDisplay: document.getElementById('modalCartDisplay'),
+            serviceSelectionGrid: document.getElementById('serviceSelectionGrid'),
+            dateTimeLocationForm: document.getElementById('dateTimeLocationForm'),
+            modalDateInput: document.getElementById('modal-date'),
+            modalTimeSelect: document.getElementById('modal-time'),
+            modalPincodeInput: document.getElementById('modal-pincode'),
+            modalDoorNoInput: document.getElementById('modal-doorNo'),
+            modalStreetNameInput: document.getElementById('modal-streetName'),
+            modalLandmarkInput: document.getElementById('modal-landmark'),
+            modalAddressDetailsDiv: document.querySelector('.address-details'),
+            modalDistrictSpan: document.getElementById('modal-district-text'),
+            modalStateSpan: document.getElementById('modal-state-text'),
+            pincodeLoader: document.querySelector('.pincode-loader'),
+            servicesError: document.getElementById('services-error'),
+            locationError: document.getElementById('location-error'),
+            floatingActionButton: document.getElementById('floatingActionButton'),
+            bookingPanel: document.getElementById('booking-panel'),
+            historyPanel: document.getElementById('history-panel'),
+            showMoreServicesBtn: document.getElementById('showMoreServicesBtn'),
+            complaintBtnLoggedIn: document.getElementById('complaintBtnLoggedIn')
+        };
+
+        let mymap, userMarker;
+        let mapInitialized = false;
+        let pincodeData = { district: 'N/A', state: 'N/A' };
+        let serviceCart = JSON.parse(localStorage.getItem('serviceCart')) || [];
+        let unsubscribeBookingListener = null;
+        let currentUserPhone = null; // Store phone for querying
+        let currentUserName = null;
+        const businessNumber = '+919490885950';
+
+        const saveToLocalStorage = (key, data) => localStorage.setItem(key, JSON.stringify(data));
+        const loadFromLocalStorage = (key) => JSON.parse(localStorage.getItem(key)) || null;
+
+        const openModal = (modalId) => {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'flex';
+                if (modalId === 'dateTimeLocationModal') {
+                    setTimeout(() => {
+                        if (!mapInitialized) initMap();
+                        else mymap.invalidateSize();
+                    }, 10);
+                }
+            }
+        };
+
+        const closeModal = (modalId) => {
+            const modal = document.getElementById(modalId);
+            if (modal) modal.style.display = 'none';
+        };
+
+        const switchView = (viewName) => {
+            const isBooking = viewName === 'booking';
+            dom.bookingPanel.classList.toggle('active', isBooking);
+            dom.historyPanel.classList.toggle('active', !isBooking);
+            
+            if (isBooking) {
+                dom.floatingActionButton.innerHTML = '<i class="fas fa-history"></i>';
+                dom.floatingActionButton.dataset.tooltip = 'View My Bookings';
+            } else {
+                dom.floatingActionButton.innerHTML = '<i class="fas fa-plus"></i>';
+                dom.floatingActionButton.dataset.tooltip = 'New Booking';
+            }
+        };
+
+        const handleStartBooking = () => {
+            dom.homeContainer.style.display = 'none';
+            // If we have a stored phone, auto login, else show form
+            if (currentUserPhone) {
+                showAppInterface();
+            } else {
+                dom.loginContainer.style.display = 'block';
+            }
+        };
+
+        const handleLoginSubmit = (e) => {
+            e.preventDefault();
+            const name = dom.loginName.value.trim();
+            const phone = dom.loginPhone.value.trim();
+
+            if (!name) { alert("Please enter your name"); return; }
+            if (!phone.match(/^[6-9]\d{9}$/)) { alert("Please enter a valid 10-digit mobile number"); return; }
+
+            currentUserPhone = phone;
+            currentUserName = name;
+            
+            // Save to local session effectively
+            showAppInterface();
+        };
+
+        const showAppInterface = () => {
+            dom.loginContainer.style.display = 'none';
+            dom.appContent.style.display = 'flex';
+            dom.userMenuContainer.style.display = 'block';
+            document.body.style.alignItems = 'flex-start';
+            dom.floatingActionButton.style.display = 'flex';
+            switchView('booking');
+
+            // Update UI with user info
+            const photoURL = `https://ui-avatars.com/api/?name=${encodeURIComponent(currentUserName)}&background=6c63ff&color=fff`;
+            dom.userAvatarTrigger.src = photoURL;
+            dom.userAvatarPopup.src = photoURL;
+            dom.userNamePopup.textContent = currentUserName;
+            dom.userEmailPopup.textContent = currentUserPhone;
+
+            // Pre-fill booking form
+            dom.nameInput.value = currentUserName;
+            dom.phoneInput.value = currentUserPhone;
+
+            // Load bookings for this phone number
+            loadBookingsForPhone(currentUserPhone);
+        };
+
+        const loadBookingsForPhone = (phone) => {
+            if(unsubscribeBookingListener) unsubscribeBookingListener();
+            
+            // Query the PUBLIC data collection by phone number
+            const bookingsRef = collection(db, 'artifacts', appId, 'public', 'data', 'bookings');
+            const q = query(bookingsRef, where('phone', '==', phone));
+            
+            unsubscribeBookingListener = onSnapshot(q, (snapshot) => {
+                const bookings = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                // Sort by timestamp descending in memory (avoiding compound query index requirement errors for this simple app)
+                bookings.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                renderBookingHistory(bookings);
+            }, (error) => {
+                console.error("Error fetching bookings:", error);
+                dom.bookingsList.innerHTML = '<p class="cart-empty" style="color:red">Error loading history. Ensure you are connected.</p>';
+            });
+        };
+
+        const handleLogout = () => {
+            currentUserPhone = null;
+            currentUserName = null;
+            if(unsubscribeBookingListener) unsubscribeBookingListener();
+            
+            dom.appContent.style.display = 'none';
+            dom.userMenuContainer.style.display = 'none';
+            dom.floatingActionButton.style.display = 'none';
+            document.body.style.alignItems = 'center';
+            dom.loginContainer.style.display = 'none';
+            dom.homeContainer.style.display = 'block';
+            dom.loginForm.reset();
+        };
+
+        // --- Render Functions ---
+
+        const renderServiceGrid = () => {
+            dom.serviceSelectionGrid.innerHTML = '';
+            for (const category in servicesData) {
+                const categoryDiv = document.createElement('div');
+                categoryDiv.className = 'services-category';
+                let categoryHTML = `<h4>${category}</h4><div class="services-grid">`;
+                servicesData[category].forEach(service => {
+                    const serviceValue = service.value || service.name;
+                    categoryHTML += `<button type="button" class="service-item" data-value="${serviceValue}">
+                        <i class="${service.icon}"></i>
+                        <span>${service.name}</span>
+                    </button>`;
+                });
+                categoryHTML += `</div>`;
+                categoryDiv.innerHTML = categoryHTML;
+                dom.serviceSelectionGrid.appendChild(categoryDiv);
+            }
+            document.querySelectorAll('.service-item').forEach(item => item.addEventListener('click', handleServiceSelection));
+        };
+
+        const renderHomeServices = () => {
+            const grid = document.querySelector('.features-grid');
+            if(!grid) return;
+            grid.innerHTML = '';
+            
+            let allServices = [];
+            for (const category in servicesData) {
+                allServices = allServices.concat(servicesData[category]);
+            }
+
+            // Simple shuffle
+            for (let i = allServices.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [allServices[i], allServices[j]] = [allServices[j], allServices[i]];
+            }
+
+            allServices.slice(0, 3).forEach(service => {
+                  const item = document.createElement('div');
+                  item.className = 'feature-item';
+                  item.style.cursor = 'pointer';
+                  item.onclick = handleStartBooking; 
+                  
+                  item.innerHTML = `
+                    <i class="${service.icon}"></i>
+                    <h3>${service.name}</h3>
+                    <p>${service.description || 'Expert service at your doorstep.'}</p>
+                  `;
+                  grid.appendChild(item);
+            });
+        };
+
+        const updateCartDisplay = (cartContainer = dom.selectedServicesCart) => {
+            if (serviceCart.length === 0) {
+                cartContainer.innerHTML = '<div class="cart-empty">No services added yet.</div>';
+                if (cartContainer === dom.selectedServicesCart) {
+                    dom.selectServiceBtn.innerHTML = `
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <i class="fas fa-plus-circle" style="color: var(--primary-color); font-size: 1.2rem;"></i>
+                                <span style="font-weight: 500;">Add Services</span>
+                            </div>
+                            <i class="fas fa-chevron-right" style="color: var(--text-light);"></i>
+                    `;
+                }
+            } else {
+                cartContainer.innerHTML = '';
+                serviceCart.forEach(service => {
+                    const item = document.createElement('div');
+                    item.className = 'cart-item';
+                    item.innerHTML = `<span>${service}</span>`;
+                    if (cartContainer === dom.selectedServicesCart || cartContainer === dom.modalCartDisplay) {
+                        item.innerHTML += `<button type="button" class="remove-btn" data-service="${service}">×</button>`;
+                    }
+                    cartContainer.appendChild(item);
+                });
+                if (cartContainer === dom.selectedServicesCart) {
+                    dom.selectServiceBtn.innerHTML = `
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <i class="fas fa-edit" style="color: var(--primary-color); font-size: 1.2rem;"></i>
+                                <span style="font-weight: 500;">Edit Services</span>
+                            </div>
+                            <i class="fas fa-chevron-right" style="color: var(--text-light);"></i>
+                    `;
+                }
+                document.querySelectorAll('.remove-btn').forEach(btn => btn.addEventListener('click', handleRemoveService));
+            }
+        };
+
+        const updateModalCartDisplay = () => {
+            updateCartDisplay(dom.modalCartDisplay);
+            const count = serviceCart.length;
+            const btnText = count > 0 ? `Confirm (${count}) Services` : 'Confirm Services';
+            dom.proceedToBookingBtn.innerHTML = `<i class="fas fa-check"></i> ${btnText}`;
+
+            document.querySelectorAll('.service-item').forEach(item => {
+                item.classList.toggle('active', serviceCart.includes(item.dataset.value));
+            });
+        };
+
+        const handleServiceSelection = (e) => {
+            const service = e.currentTarget.dataset.value;
+            const index = serviceCart.indexOf(service);
+            if (index > -1) serviceCart.splice(index, 1);
+            else serviceCart.push(service);
+            saveToLocalStorage('serviceCart', serviceCart);
+            updateModalCartDisplay();
+        };
+
+        const handleRemoveService = (e) => {
+            serviceCart = serviceCart.filter(s => s !== e.target.dataset.service);
+            saveToLocalStorage('serviceCart', serviceCart);
+            if(document.getElementById('serviceModal').style.display === 'flex') {
+                updateModalCartDisplay();
+            } else {
+                updateCartDisplay();
+            }
+        };
+
+        const renderBookingHistory = (bookings = []) => {
+            if(!bookings || bookings.length === 0) {
+                  dom.bookingsList.innerHTML = '<p class="cart-empty">No bookings found for this number.</p>';
+                  return;
+            }
+
+            dom.bookingsList.innerHTML = bookings.map(b => {
+                const locLink = (b.lat && b.lng) 
+                    ? `<a href="https://www.google.com/maps/search/?api=1&query=${b.lat},${b.lng}" target="_blank" style="text-decoration: none; color: var(--primary-color);">View on Map</a>` 
+                    : 'N/A';
+                
+                return `<div class="booking-item">
+                        <div class="booking-header">
+                           <span class="booking-services">${b.services}</span>
+                           <span class="sync-status-badge sync-synced">Synced</span>
+                        </div>
+                        <div class="booking-details-grid">
+                            <div class="booking-detail">
+                                <div class="booking-detail-icon"><i class="fas fa-user"></i></div>
+                                <div class="booking-detail-content">
+                                    <span class="booking-detail-label">Name</span>
+                                    <span class="booking-detail-value">${b.name}</span>
+                                </div>
+                            </div>
+                            <div class="booking-detail">
+                                <div class="booking-detail-icon"><i class="fas fa-phone"></i></div>
+                                <div class="booking-detail-content">
+                                    <span class="booking-detail-label">Phone</span>
+                                    <span class="booking-detail-value">${b.phone}</span>
+                                </div>
+                            </div>
+                            <div class="booking-detail">
+                                <div class="booking-detail-icon"><i class="fas fa-calendar-alt"></i></div>
+                                <div class="booking-detail-content">
+                                    <span class="booking-detail-label">Date</span>
+                                    <span class="booking-detail-value">${new Date(b.date).toLocaleDateString('en-IN', {day: 'numeric', month: 'short', year: 'numeric'})}</span>
+                                </div>
+                            </div>
+                            <div class="booking-detail">
+                                <div class="booking-detail-icon"><i class="fas fa-clock"></i></div>
+                                <div class="booking-detail-content">
+                                    <span class="booking-detail-label">Time</span>
+                                    <span class="booking-detail-value">${b.time}</span>
+                                </div>
+                            </div>
+                            <div class="booking-detail">
+                                <div class="booking-detail-icon"><i class="fas fa-map-marker-alt"></i></div>
+                                <div class="booking-detail-content">
+                                    <span class="booking-detail-label">Location</span>
+                                    <span class="booking-detail-value">${locLink}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+            }).join('');
+        };
+
+        // --- Map & Location ---
+
+        const initMap = () => {
+            if(mapInitialized) return;
+            // Leaflet JS requires global 'L'
+            // Since we imported CSS, we assume JS is loaded via CDN in script tag (added below script type=module)
+        };
+        
+        // Helper to load Leaflet JS dynamically since type=module doesn't expose it globally easily
+        // We will just use the CDN script tag in HTML head for Leaflet JS (see below)
+
+        const handlePincodeLookup = async (pincode) => {
+            dom.modalAddressDetailsDiv.style.display = 'none';
+            if (pincode.length !== 6) return;
+            
+            dom.pincodeLoader.style.display = 'block';
+            try {
+                const response = await fetch(`https://api.postalpincode.in/pincode/${pincode}`);
+                const data = await response.json();
+                
+                if (data && data[0]?.Status === 'Success') {
+                    const po = data[0].PostOffice[0];
+                    pincodeData = { district: po.District, state: po.State };
+                    dom.modalDistrictSpan.textContent = po.District;
+                    dom.modalStateSpan.textContent = po.State;
+                    dom.modalAddressDetailsDiv.style.display = 'block';
+                }
+            } catch (error) {
+                console.error("Pincode lookup failed:", error);
+            } finally {
+                dom.pincodeLoader.style.display = 'none';
+            }
+        };
+
+        // --- Form Handling ---
+
+        const showError = (input, message) => {
+            input.classList.add('invalid');
+            const errorSpan = input.parentElement.querySelector('.error-message');
+            if (errorSpan) {
+                errorSpan.textContent = message;
+                errorSpan.style.display = 'block';
+            }
+        };
+
+        const clearError = (input) => {
+            input.classList.remove('invalid');
+            const errorSpan = input.parentElement.querySelector('.error-message');
+            if (errorSpan) errorSpan.style.display = 'none';
+        };
+
+        const validateForm = () => {
+            let isValid = true;
+            document.querySelectorAll('.error-message').forEach(e => e.style.display = 'none');
+            document.querySelectorAll('.invalid').forEach(e => e.classList.remove('invalid'));
+
+            if (!dom.nameInput.value.trim()) { showError(dom.nameInput, 'Name is required.'); isValid = false; }
+            // Phone is readonly in form, so it comes from state
+            if (!currentUserPhone || !currentUserPhone.match(/^[6-9]\d{9}$/)) { showError(dom.phoneInput, 'Invalid phone number session. Please relogin.'); isValid = false; }
+            if (serviceCart.length === 0) { dom.selectServiceBtn.classList.add('invalid'); dom.servicesError.style.display = 'block'; isValid = false; }
+            if (!dom.dateInput.value || !dom.timeInput.value || !dom.pincodeInput.value) { dom.selectDateTimeLocationBtn.classList.add('invalid'); dom.locationError.style.display = 'block'; isValid = false; }
+
+            return isValid;
+        };
+
+        const handleServiceFormSubmit = async (e) => {
+            e.preventDefault();
+            if (!validateForm()) return;
+
+            const bookingData = {
+                services: serviceCart.join(', '),
+                name: dom.nameInput.value,
+                phone: currentUserPhone, // Ensure we use the authenticated phone
+                details: dom.detailsInput.value || 'N/A',
+                date: dom.dateInput.value,
+                time: dom.timeInput.value,
+                pincode: dom.pincodeInput.value,
+                address: [dom.doorNoInput.value, dom.streetNameInput.value, dom.landmarkInput.value].filter(Boolean).join(', '),
+                lat: dom.latInput.value,
+                lng: dom.lngInput.value,
+                district: pincodeData.district,
+                state: pincodeData.state,
+                timestamp: new Date().toISOString(),
+                // We don't save userId in the doc anymore as primary key, but useful for audit
+                createdByAuthId: auth.currentUser ? auth.currentUser.uid : 'anon'
+            };
+
+            try {
+                // Save to PUBLIC collection so it can be queried by phone
+                const bookingsRef = collection(db, 'artifacts', appId, 'public', 'data', 'bookings');
+                await addDoc(bookingsRef, bookingData);
+                showSuccessMessage(bookingData);
+            } catch (error) {
+                console.error("Error adding booking: ", error);
+                alert("Failed to save booking. Please try again.");
+            }
+        };
+
+        const showSuccessMessage = (formData) => {
+            dom.serviceForm.style.display = 'none';
+            dom.bookingSuccessMessage.style.display = 'block';
+            
+            const locationLink = (formData.lat && formData.lng) 
+                ? `https://www.google.com/maps/search/?api=1&query=${formData.lat},${formData.lng}` 
+                : 'Location not specified.';
+                
+            const message = `*New Service Request*\n\n*Services*: ${formData.services}\n*Name*: ${formData.name}\n*Phone*: ${formData.phone}\n*Date*: ${new Date(formData.date).toLocaleDateString('en-IN')}\n*Time*: ${formData.time}\n*Address*: ${formData.address}, ${formData.pincode}\n*Location*: ${locationLink}\n*Details*: ${formData.details}\n\n*Srinu Home Services*\n*T&C accepted*`;
+            
+            const encoded = encodeURIComponent(message.trim());
+            dom.whatsappBtn.onclick = () => window.open(`https://wa.me/${businessNumber}?text=${encoded}`, '_blank');
+            dom.smsBtn.onclick = () => window.open(`sms:${businessNumber}?body=${encoded}`, '_blank');
+        };
+
+        const resetBookingFlow = () => {
+             dom.serviceForm.reset();
+             // Restore correct name/phone
+             dom.nameInput.value = currentUserName;
+             dom.phoneInput.value = currentUserPhone;
+             
+             dom.bookingSuccessMessage.style.display = 'none';
+             dom.serviceForm.style.display = 'flex';
+             dom.selectedDateTimeLocationText.textContent = 'Tap to Select Date, Time & Location';
+             dom.selectedDateTimeLocationText.classList.remove('selected');
+             serviceCart = [];
+             saveToLocalStorage('serviceCart', []);
+             updateCartDisplay();
+             document.querySelectorAll('.error-message, .invalid').forEach(el => {
+                  el.style.display = 'none';
+                  el.classList.remove('invalid');
+             });
+        };
+
+        const handleDateTimeLocationFormSubmit = (e) => {
+            e.preventDefault();
+            dom.dateInput.value = dom.modalDateInput.value;
+            dom.timeInput.value = dom.modalTimeSelect.value;
+            dom.pincodeInput.value = dom.modalPincodeInput.value;
+            dom.doorNoInput.value = dom.modalDoorNoInput.value;
+            dom.streetNameInput.value = dom.modalStreetNameInput.value;
+            dom.landmarkInput.value = dom.modalLandmarkInput.value;
+
+            if (userMarker) {
+                const latLng = userMarker.getLatLng();
+                dom.latInput.value = latLng.lat;
+                dom.lngInput.value = latLng.lng;
+            }
+
+            const formattedDate = new Date(dom.dateInput.value).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+            dom.selectedDateTimeLocationText.innerHTML = `
+                <span style="font-weight: 600; color: var(--text-color);">${formattedDate}, ${dom.timeInput.value}</span>
+                <span style="font-size: 0.85rem; color: var(--text-light);">Pincode: ${dom.pincodeInput.value}</span>
+            `;
+            
+            clearError(dom.selectDateTimeLocationBtn);
+            dom.locationError.style.display = 'none';
+            closeModal('dateTimeLocationModal');
+        };
+
+        // Event Listeners
+        dom.getStartedBtn.addEventListener('click', handleStartBooking);
+        if (dom.showMoreServicesBtn) dom.showMoreServicesBtn.addEventListener('click', handleStartBooking);
+        
+        dom.loginForm.addEventListener('submit', handleLoginSubmit);
+
+        dom.logoutBtn.addEventListener('click', handleLogout);
+        
+        dom.userMenuTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dom.userMenuPopup.classList.toggle('show');
+        });
+
+        if (dom.complaintBtnLoggedIn) {
+             dom.complaintBtnLoggedIn.addEventListener('click', () => {
+                 alert('Support form would appear here.');
+                 dom.userMenuPopup.classList.remove('show');
+             });
+        }
+        
+        window.addEventListener('click', () => {
+            if (dom.userMenuPopup.classList.contains('show')) {
+                dom.userMenuPopup.classList.remove('show');
+            }
+        });
+
+        dom.selectServiceBtn.addEventListener('click', () => {
+            updateModalCartDisplay();
+            openModal('serviceModal');
+        });
+
+        dom.proceedToBookingBtn.addEventListener('click', () => {
+            updateCartDisplay();
+            clearError(dom.selectServiceBtn);
+            dom.servicesError.style.display = 'none';
+            closeModal('serviceModal');
+        });
+
+        dom.selectDateTimeLocationBtn.addEventListener('click', () => openModal('dateTimeLocationModal'));
+        
+        document.querySelectorAll('.close-btn').forEach(btn => btn.addEventListener('click', (e) => closeModal(e.target.dataset.modal)));
+        window.addEventListener('click', (e) => { if (e.target.classList.contains('modal')) closeModal(e.target.id); });
+        
+        dom.dateTimeLocationForm.addEventListener('submit', handleDateTimeLocationFormSubmit);
+        dom.serviceForm.addEventListener('submit', handleServiceFormSubmit);
+        dom.bookAnotherBtn.addEventListener('click', resetBookingFlow);
+        dom.modalPincodeInput.addEventListener('input', e => handlePincodeLookup(e.target.value));
+        
+        dom.floatingActionButton.addEventListener('click', () => {
+            const isBookingActive = dom.bookingPanel.classList.contains('active');
+            switchView(isBookingActive ? 'history' : 'booking');
+        });
+
+        // Initialize UI
+        renderServiceGrid();
+        renderHomeServices();
+        updateCartDisplay();
+        dom.modalDateInput.setAttribute('min', new Date().toISOString().split('T')[0]);
+
+        // Init Leaflet (Manual since module type)
+        window.onload = function() {
+             // Leaflet JS Script is loaded from CDN in HTML, so L is available globally
+             // We can init basic functionality if needed
+        }
+        
+        // Define Map Init globally for the modal logic to call
+        window.initMap = () => {
+            if(mapInitialized) return;
+            // Wait for L to be available
+            if(typeof L !== 'undefined') {
+                 mymap = L.map('mapid').setView([14.4673, 78.8242], 13); // Kadapa
+                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(mymap);
+                 mapInitialized = true;
+                 
+                 const initialLatLng = L.latLng(parseFloat(dom.latInput.value) || 14.4673, parseFloat(dom.lngInput.value) || 78.8242);
+                 userMarker = L.marker(initialLatLng, { draggable: true }).addTo(mymap);
+                 
+                 userMarker.on('dragend', () => {
+                    const latLng = userMarker.getLatLng();
+                    dom.latInput.value = latLng.lat;
+                    dom.lngInput.value = latLng.lng;
+                 });
+                 mymap.setView(initialLatLng, dom.latInput.value ? 17 : 13);
+            }
+        };
+
+        // Re-assign local function to window for the modal to call it
+        window.initMap = initMap;
+        
+    </script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</body>
+</html>
