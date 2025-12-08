@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -405,13 +404,13 @@
             border-radius: 20px; /* Match container on desktop */
         }
 
-        .user-avatar {
-             width: clamp(35px, 8vw, 45px);
-             height: clamp(35px, 8vw, 45px);
-             border-radius: 50%;
-             object-fit: cover;
-             border: 3px solid var(--primary-color);
-         }
+        .user-avatar { 
+            width: clamp(35px, 8vw, 45px); 
+            height: clamp(35px, 8vw, 45px); 
+            border-radius: 50%; 
+            object-fit: cover; 
+            border: 3px solid var(--primary-color); 
+        }
 
         .user-name { font-weight: 600; }
         .user-email { font-size: clamp(0.7rem, 1.5vw, 0.8rem); color: var(--text-light); }
@@ -463,17 +462,17 @@
 
         /* Buttons */
         .btn {
-            padding: clamp(12px, 2.5vw, 14px) clamp(16px, 3vw, 20px);
-             border: none;
-             border-radius: 12px;
-             font-weight: 600;
-             cursor: pointer;
-             transition: all 0.3s ease;
-             display: inline-flex;
-             align-items: center;
-             justify-content: center;
-             gap: 0.5rem;
-             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: clamp(12px, 2.5vw, 14px) clamp(16px, 3vw, 20px); 
+            border: none; 
+            border-radius: 12px; 
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 0.5rem; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         .btn:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
@@ -483,25 +482,25 @@
         .btn-secondary { background-color: var(--secondary-color); color: #fff; }
         .btn-secondary:hover:not(:disabled) { background-color: var(--secondary-hover); }
 
-        .btn-google {
-             background-color: var(--card-background);
-             color: var(--text-color);
-             border: 1px solid var(--border-color);
-             font-weight: 500;
-             padding: clamp(12px, 3vw, 14px) clamp(20px, 4vw, 24px);
-             font-size: clamp(0.9rem, 2vw, 1rem);
-         }
+        .btn-google { 
+            background-color: var(--card-background); 
+            color: var(--text-color); 
+            border: 1px solid var(--border-color); 
+            font-weight: 500; 
+            padding: clamp(12px, 3vw, 14px) clamp(20px, 4vw, 24px); 
+            font-size: clamp(0.9rem, 2vw, 1rem); 
+        }
         .btn-google i { color: #EA4335; font-size: clamp(1.2rem, 3vw, 1.5rem); }
 
         /* Tab Content */
-        .tab-content-wrapper {
-             flex-grow: 1;
-             background: var(--card-background);
-             padding: clamp(1.5rem, 3vw, 2rem);
-             border-radius: 20px;
-             margin-top: 1rem;
-             overflow-y: visible; /* Changed for better mobile scrolling */
-         }
+        .tab-content-wrapper { 
+            flex-grow: 1; 
+            background: var(--card-background); 
+            padding: clamp(1.5rem, 3vw, 2rem); 
+            border-radius: 20px; 
+            margin-top: 1rem; 
+            overflow-y: visible; /* Changed for better mobile scrolling */ 
+        }
         .tab-panel { display: none; }
         .tab-panel.active { display: block; animation: fadeIn 0.5s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -510,45 +509,45 @@
         form { display: flex; flex-direction: column; gap: 1.2rem; }
         .form-group { display: flex; flex-direction: column; position: relative; margin-bottom: 0; }
         
-        label {
-             font-weight: 500;
-             margin-bottom: 0.5rem;
-             color: var(--text-color);
-             font-size: 0.95rem;
-         }
-          
-        input, select, textarea {
-             width: 100%;
-             padding: 14px 16px; /* Larger tap target */
-             border: 1px solid var(--border-color);
-             border-radius: 12px;
-             font-family: inherit;
-             color: var(--text-color);
-             background-color: #f8f9fa;
-             transition: all 0.3s ease;
-             font-size: 16px; /* Prevent iOS zoom */
+        label { 
+            font-weight: 500; 
+            margin-bottom: 0.5rem; 
+            color: var(--text-color); 
+            font-size: 0.95rem; 
         }
         
-        input:focus, select:focus, textarea:focus {
-             border-color: var(--primary-color);
-             box-shadow: 0 0 0 4px var(--input-focus-shadow);
-             outline: none;
-             background-color: var(--card-background);
-         }
+        input, select, textarea { 
+            width: 100%; 
+            padding: 14px 16px; /* Larger tap target */ 
+            border: 1px solid var(--border-color); 
+            border-radius: 12px; 
+            font-family: inherit; 
+            color: var(--text-color); 
+            background-color: #f8f9fa; 
+            transition: all 0.3s ease; 
+            font-size: 16px; /* Prevent iOS zoom */
+        }
+        
+        input:focus, select:focus, textarea:focus { 
+            border-color: var(--primary-color); 
+            box-shadow: 0 0 0 4px var(--input-focus-shadow); 
+            outline: none; 
+            background-color: var(--card-background); 
+        }
 
         /* Action Card Buttons */
-        .form-button {
-             text-align: left;
-             cursor: pointer;
-             background-color: #fff;
-             border: 1px solid var(--border-color);
-             display: flex;
-             justify-content: space-between;
-             align-items: center;
-             padding: 16px; /* Larger Card feel */
-             border-radius: 16px;
-             box-shadow: 0 2px 6px rgba(0,0,0,0.03);
-             transition: all 0.2s;
+        .form-button { 
+            text-align: left; 
+            cursor: pointer; 
+            background-color: #fff; 
+            border: 1px solid var(--border-color); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 16px; /* Larger Card feel */ 
+            border-radius: 16px; 
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03); 
+            transition: all 0.2s;
         }
         .form-button:hover, .form-button:active { 
             border-color: var(--primary-color); 
@@ -558,20 +557,20 @@
         .form-button-text { color: var(--text-light); font-weight: 500; }
         .form-button-text.selected { color: var(--text-color); font-weight: 600; }
         
-        .form-row {
-             display: grid;
-             grid-template-columns: 1fr;
-             gap: 1.2rem;
+        .form-row { 
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: 1.2rem;
         }
 
         /* Error Messages */
-        .error-message {
-             color: var(--danger-color);
-             margin-top: 0.4rem;
-             display: none;
-             animation: fadeIn 0.3s;
-             font-size: 0.85rem;
-         }
+        .error-message { 
+            color: var(--danger-color); 
+            margin-top: 0.4rem; 
+            display: none; 
+            animation: fadeIn 0.3s; 
+            font-size: 0.85rem; 
+        }
         input.invalid, select.invalid, .form-button.invalid { border-color: var(--danger-color) !important; }
 
         /* Input with Icon */
@@ -586,38 +585,38 @@
         }
 
         /* Map */
-        #mapid {
-             height: 250px;
-             width: 100%;
-             margin-top: 1rem;
-             border-radius: 16px;
-             box-shadow: 0 4px 15px var(--shadow-color);
-             border: 1px solid var(--border-color);
-             z-index: 1;
-         }
+        #mapid { 
+            height: 250px; 
+            width: 100%; 
+            margin-top: 1rem; 
+            border-radius: 16px; 
+            box-shadow: 0 4px 15px var(--shadow-color); 
+            border: 1px solid var(--border-color); 
+            z-index: 1; 
+        }
 
         /* Address Details */
-        .address-details {
-             margin-top: 0.8rem;
-             padding: 1rem;
-             border-radius: 12px;
-             background: #f0f7ff;
-             border: 1px solid #dbeafe;
-             color: #1e3a8a;
+        .address-details { 
+            margin-top: 0.8rem; 
+            padding: 1rem; 
+            border-radius: 12px; 
+            background: #f0f7ff; 
+            border: 1px solid #dbeafe; 
+            color: #1e3a8a;
         }
 
         /* Pincode Loader */
         .pincode-loader {
-            display: none;
-             width: 20px;
-             height: 20px;
-            border: 3px solid var(--border-color);
-             border-top-color: var(--primary-color);
-            border-radius: 50%;
-             animation: spin 1s linear infinite;
-            position: absolute;
-             right: 1.2rem;
-             top: 42px; /* Adjusted for larger input */
+            display: none; 
+            width: 20px; 
+            height: 20px;
+            border: 3px solid var(--border-color); 
+            border-top-color: var(--primary-color);
+            border-radius: 50%; 
+            animation: spin 1s linear infinite;
+            position: absolute; 
+            right: 1.2rem; 
+            top: 42px; /* Adjusted for larger input */
         }
         @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -635,58 +634,58 @@
             overflow: hidden;
         }
         
-        .booking-header {
-             display: flex;
-             justify-content: space-between;
-             align-items: center;
-             margin-bottom: 1rem;
-             padding-bottom: 0.8rem;
-             border-bottom: 1px dashed var(--border-color);
-         }
-
-        .booking-services {
-             font-weight: 700;
-             color: var(--text-color);
-             font-size: 1.1rem;
+        .booking-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 1rem; 
+            padding-bottom: 0.8rem; 
+            border-bottom: 1px dashed var(--border-color); 
         }
 
-        .sync-status-badge {
-             padding: 4px 10px;
-             border-radius: 20px;
-             font-size: 0.7rem;
-             font-weight: 700;
-             text-transform: uppercase;
-             letter-spacing: 0.5px;
-         }
+        .booking-services { 
+            font-weight: 700; 
+            color: var(--text-color); 
+            font-size: 1.1rem;
+        }
+
+        .sync-status-badge { 
+            padding: 4px 10px; 
+            border-radius: 20px; 
+            font-size: 0.7rem; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+        }
 
         .sync-synced { background-color: var(--success-color); color: white; }
         .sync-pending { background-color: var(--warning-color); color: white; }
 
-        .booking-details-grid {
-             display: grid;
-             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-             gap: 1rem;
-         }
+        .booking-details-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+            gap: 1rem; 
+        }
 
-        .booking-detail {
-             display: flex;
-             align-items: center;
-             gap: 0.8rem;
-             padding: 0.5rem;
-             border-radius: 8px;
-         }
+        .booking-detail { 
+            display: flex; 
+            align-items: center; 
+            gap: 0.8rem; 
+            padding: 0.5rem; 
+            border-radius: 8px; 
+        }
 
-        .booking-detail-icon {
-             width: 32px;
-             height: 32px;
-             display: flex;
-             align-items: center;
-             justify-content: center;
-             background-color: rgba(108, 99, 255, 0.1);
-             border-radius: 8px;
-             color: var(--primary-color);
-             font-size: 0.9rem;
-             flex-shrink: 0;
+        .booking-detail-icon { 
+            width: 32px; 
+            height: 32px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            background-color: rgba(108, 99, 255, 0.1); 
+            border-radius: 8px; 
+            color: var(--primary-color); 
+            font-size: 0.9rem; 
+            flex-shrink: 0;
         }
         
         .booking-detail-content { display: flex; flex-direction: column; }
@@ -695,42 +694,42 @@
 
         /* Modals - Mobile Bottom Sheet Style */
         .modal {
-            display: none;
-             position: fixed;
-             z-index: 1000;
-            left: 0;
-             top: 0;
-             width: 100%;
-             height: 100%;
-            background-color: rgba(30, 41, 59, 0.6);
-             backdrop-filter: blur(5px);
-            justify-content: center;
-             align-items: center;
-             padding: 15px;
+            display: none; 
+            position: fixed; 
+            z-index: 1000;
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%;
+            background-color: rgba(30, 41, 59, 0.6); 
+            backdrop-filter: blur(5px);
+            justify-content: center; 
+            align-items: center; 
+            padding: 15px;
             animation: modalFadeIn 0.3s ease-out;
         }
         @keyframes modalFadeIn { from { opacity: 0; } to { opacity: 1; } }
         
         .modal-content {
-            background-color: var(--card-background);
-             padding: 2rem;
-             border-radius: 20px;
-             width: 100%;
-            max-width: 800px;
-             box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-             position: relative;
-            max-height: 90vh;
-             overflow-y: auto;
-             animation: slideIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            background-color: var(--card-background); 
+            padding: 2rem; 
+            border-radius: 20px; 
+            width: 100%;
+            max-width: 800px; 
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2); 
+            position: relative;
+            max-height: 90vh; 
+            overflow-y: auto; 
+            animation: slideIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         @keyframes slideIn { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-        .modal-header {
-             display: flex;
-             justify-content: space-between;
-             align-items: center;
-             margin-bottom: 1.5rem;
-         }
+        .modal-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 1.5rem; 
+        }
         .modal-header h3 { color: var(--primary-color); font-weight: 700; font-size: 1.3rem; }
         .close-btn { font-size: 2rem; color: var(--text-light); cursor: pointer; }
 
@@ -781,84 +780,84 @@
         
         /* Services Grid */
         .services-category { margin-bottom: 1.5rem; }
-        .services-category h4 {
-             color: var(--primary-color);
-             margin-bottom: 0.8rem;
-             border-bottom: 2px solid var(--border-color);
-             padding-bottom: 0.3rem;
-         }
-        .services-grid {
-             display: grid;
-             grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-             gap: 0.8rem;
-         }
-        .service-item {
-             display: flex;
-             flex-direction: column;
-             align-items: center;
-             justify-content: center;
-             padding: 12px;
-             border: 2px solid var(--border-color);
-             border-radius: 16px;
-             background-color: #fff;
-             cursor: pointer;
-             transition: all 0.2s ease;
-             font-size: 0.8rem;
-             color: var(--text-color);
-             text-align: center;
-             height: 100%;
-         }
+        .services-category h4 { 
+            color: var(--primary-color); 
+            margin-bottom: 0.8rem; 
+            border-bottom: 2px solid var(--border-color); 
+            padding-bottom: 0.3rem; 
+        }
+        .services-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); 
+            gap: 0.8rem; 
+        }
+        .service-item { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 12px; 
+            border: 2px solid var(--border-color); 
+            border-radius: 16px; 
+            background-color: #fff; 
+            cursor: pointer; 
+            transition: all 0.2s ease; 
+            font-size: 0.8rem; 
+            color: var(--text-color); 
+            text-align: center; 
+            height: 100%; 
+        }
         .service-item:active { transform: scale(0.95); }
         .service-item i { font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--primary-color); }
-        .service-item.active {
-             border-color: var(--primary-color);
-             background-color: rgba(108, 99, 255, 0.05);
-             box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2);
-         }
+        .service-item.active { 
+            border-color: var(--primary-color); 
+            background-color: rgba(108, 99, 255, 0.05); 
+            box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2); 
+        }
 
         /* Cart */
-        .cart-panel {
-             margin-top: 1.5rem;
-             padding: 1.5rem;
-             border: 1px dashed var(--primary-color);
-             border-radius: 12px;
-             background: #f8f0ff;
-         }
-        .cart-item {
-             display: flex;
-             justify-content: space-between;
-             align-items: center;
-             padding: 8px 12px;
-             background: white;
-             border-radius: 8px;
-             margin-bottom: 0.5rem;
-             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-             font-size: 0.9rem;
-         }
-        .remove-btn {
-             background: var(--danger-color);
-             color: white;
-             border: none;
-             width: 24px; height: 24px;
-             border-radius: 50%;
-             font-size: 0.9rem;
-             cursor: pointer;
-             display: flex;
-             align-items: center;
-             justify-content: center;
-             margin-left: 10px;
-         }
+        .cart-panel { 
+            margin-top: 1.5rem; 
+            padding: 1.5rem; 
+            border: 1px dashed var(--primary-color); 
+            border-radius: 12px; 
+            background: #f8f0ff; 
+        }
+        .cart-item { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 8px 12px; 
+            background: white; 
+            border-radius: 8px; 
+            margin-bottom: 0.5rem; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05); 
+            font-size: 0.9rem; 
+        }
+        .remove-btn { 
+            background: var(--danger-color); 
+            color: white; 
+            border: none; 
+            width: 24px; height: 24px; 
+            border-radius: 50%; 
+            font-size: 0.9rem; 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            margin-left: 10px; 
+        }
         .cart-footer { display: flex; justify-content: flex-end; margin-top: 1rem; }
 
         /* Booking Success */
-        .booking-success-container {
-             text-align: center;
-             padding: 2rem;
-             background: var(--background-color);
-             border-radius: 16px;
-             margin-top: 1.5rem;
-             border: 1px solid var(--border-color);
-         }
+        .booking-success-container { 
+            text-align: center; 
+            padding: 2rem; 
+            background: var(--background-color); 
+            border-radius: 16px; 
+            margin-top: 1.5rem; 
+            border: 1px solid var(--border-color); 
+        }
         .booking-success-container .fa-check-circle { font-size: 3.5rem; color: var(--success-color); margin-bottom: 1rem; }
         .booking-success-container h3 { margin-bottom: 0.5rem; }
 
@@ -1045,6 +1044,12 @@
                 <div style="flex-grow: 1;">
                     <h3 style="color: var(--primary-color);">Srinu Home Services</h3>
                 </div>
+
+                <!-- ADDED: Call button beside profile -->
+                <a href="tel:+919490885950" class="btn btn-sm" style="margin-right: 10px; background: #e0e7ff; color: var(--primary-color); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; text-decoration: none;">
+                    <i class="fas fa-phone-alt"></i>
+                </a>
+
                 <div id="userMenuContainer">
                     <button id="userMenuTrigger" class="user-menu-trigger">
                         <img id="userAvatarTrigger" class="user-avatar" src="" alt="User Avatar">
@@ -1058,6 +1063,12 @@
                             </div>
                         </div>
                         <hr class="popup-divider">
+                        
+                        <!-- ADDED: Complaint / Support Button -->
+                        <a href="complaint.html" class="btn-logout-popup" style="color: var(--text-color); margin-bottom: 0.5rem; text-decoration: none;">
+                            <i class="fas fa-headset"></i> Support / Complaint
+                        </a>
+
                         <button id="logoutBtn" class="btn-logout-popup">
                             <i class="fas fa-sign-out-alt"></i> Logout
                         </button>
@@ -1067,8 +1078,8 @@
 
             <main class="tab-content-wrapper">
                 <div id="booking-panel" class="tab-panel active">
-                    <form id="serviceForm" novalidate>
-                         <div class="form-row">
+                    <form id="serviceForm" novalidate> 
+                        <div class="form-row">
                             <div class="form-group">
                                 <label>Your Name <span style="color: var(--danger-color)">*</span></label>
                                 <input type="text" id="name" name="name" placeholder="e.g., John Doe" required>
@@ -1112,8 +1123,8 @@
                                     <span id="selectedDateTimeLocationText" class="form-button-text">Tap to Select Date, Time & Location</span>
                                 </div>
                                 <i class="fas fa-chevron-right" style="color: var(--text-light);"></i>
-                            </button>
-                             <span class="error-message" id="location-error">Date, time, and location are required.</span>
+                            </button> 
+                            <span class="error-message" id="location-error">Date, time, and location are required.</span>
                         </div>
 
                         <div class="form-group">
@@ -1132,8 +1143,8 @@
                             <div class="share-buttons">
                                 <button id="whatsapp-btn" class="btn btn-secondary" style="background: #25D366; width: 100%; justify-content: center; padding: 14px;"><i class="fab fa-whatsapp"></i> Send via WhatsApp</button>
                                 <button id="sms-btn" class="btn btn-secondary" style="background: var(--text-color); width: 100%; justify-content: center; padding: 14px;"><i class="fas fa-sms"></i> Send via SMS</button>
-                            </div>
-                             <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid var(--border-color);">
+                            </div> 
+                            <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid var(--border-color);">
                             <button id="bookAnotherBtn" class="btn" style="background: transparent; border: 1px solid var(--primary-color); color: var(--primary-color); width: 100%;">Book Another Service</button>
                         </div>
                     </div>
@@ -1764,11 +1775,10 @@
                 dom.bookingSuccessMessage.style.display = 'block';
                 
                 const locationLink = (formData.lat && formData.lng) 
-                    ? `https://www.google.com/maps/search/?api=1&query=${formData.lat},${formData.lng}` 
-                    : 'Location not specified.';
+                     ? `https://www.google.com/maps/search/?api=1&query=${formData.lat},${formData.lng}` 
+                     : 'Location not specified.';
                     
                 const message = `*New Service Request*\n\n*Services*: ${formData.services}\n*Name*: ${formData.name}\n*Phone*: ${formData.phone}\n*Date*: ${new Date(formData.date).toLocaleDateString('en-IN')}\n*Time*: ${formData.time}\n*Address*: ${formData.address}, ${formData.pincode}\n*Location*: ${locationLink}\n*Details*: ${formData.details}\n\n*Srinu Home Services*\n*T&C accepted*`;
-                
                 const encoded = encodeURIComponent(message.trim());
                 dom.whatsappBtn.onclick = () => window.open(`https://wa.me/${businessNumber}?text=${encoded}`, '_blank');
                 dom.smsBtn.onclick = () => window.open(`sms:${businessNumber}?body=${encoded}`, '_blank');
@@ -1811,8 +1821,8 @@
 
                 dom.bookingsList.innerHTML = userHistory.map(b => {
                     const locLink = (b.lat && b.lng) 
-                        ? `<a href="https://www.google.com/maps/search/?api=1&query=${b.lat},${b.lng}" target="_blank" style="text-decoration: none; color: var(--primary-color);">View on Map</a>` 
-                        : 'N/A';
+                         ? `<a href="https://www.google.com/maps/search/?api=1&query=${b.lat},${b.lng}" target="_blank" style="text-decoration: none; color: var(--primary-color);">View on Map</a>` 
+                         : 'N/A';
                     const syncClass = b.synced ? 'sync-synced' : 'sync-pending';
                     const syncText = b.synced ? 'Synced' : 'Pending';
 
@@ -1896,7 +1906,7 @@
                             const firebaseBookingsMap = new Map(Object.entries(firebaseBookings));
                             
                             localHistory = localHistory.map(localBooking => 
-                                firebaseBookingsMap.has(localBooking.id) ? firebaseBookingsMap.get(localBooking.id) : localBooking
+                                 firebaseBookingsMap.has(localBooking.id) ? firebaseBookingsMap.get(localBooking.id) : localBooking
                             );
 
                             firebaseBookingsMap.forEach((fbBooking, id) => {
